@@ -1,0 +1,1304 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Spark Research India — Programme Pitch</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    /* Brand palette — lifted from the program guide */
+    --navy-deep: #051d4d;
+    --navy: #0a2358;
+    --navy-2: #0e2d6e;
+    --royal: #1656c7;
+    --royal-bright: #2a6fdb;
+    --gold: #f5a623;
+    --gold-warm: #f7b733;
+    --panel: #e8f0fc;
+    --panel-2: #f3f7fd;
+    --ink: #0a1733;
+    --ink-soft: #34406b;
+    --muted: #6b7896;
+    --line: rgba(255,255,255,0.14);
+    --line-dark: rgba(10,23,51,0.12);
+
+    /* Phase accents */
+    --phase-1: #1656c7;
+    --phase-2: #1656c7;
+    --phase-3: #16a39a;
+    --phase-4: #2f9d57;
+    --phase-5: #f5a623;
+
+    /* Type scale (1920x1080) */
+    --type-hero: 108px;
+    --type-display: 96px;
+    --type-title: 64px;
+    --type-subtitle: 40px;
+    --type-body: 30px;
+    --type-small: 26px;
+    --type-tag: 22px;
+
+    /* Spacing */
+    --pad-x: 110px;
+    --pad-top: 96px;
+    --pad-bottom: 96px;
+    --gap-title: 56px;
+    --gap-item: 28px;
+
+    --display-font: "Sora", "Manrope", system-ui, sans-serif;
+    --body-font: "Manrope", system-ui, sans-serif;
+    --serif: "Fraunces", Georgia, serif;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; font-family: var(--body-font); color: var(--ink); }
+
+  deck-stage > section {
+    background: var(--panel-2);
+    color: var(--ink);
+    font-family: var(--body-font);
+    font-size: var(--type-body);
+    line-height: 1.4;
+    overflow: hidden;
+  }
+
+  /* Common layout primitives */
+  .frame {
+    width: 100%; height: 100%;
+    padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
+    box-sizing: border-box;
+    display: flex; flex-direction: column;
+    position: relative;
+  }
+  .frame.dark { background: var(--navy-deep); color: #fff; }
+  .frame.navy { background: var(--navy); color: #fff; }
+
+  .eyebrow {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 26px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin: 0 0 28px 0;
+    display: inline-flex; align-items: center; gap: 16px;
+  }
+  .eyebrow::before {
+    content: ""; display: inline-block;
+    width: 56px; height: 3px; background: var(--gold); border-radius: 2px;
+  }
+  .frame:not(.dark):not(.navy) .eyebrow { color: var(--royal); }
+  .frame:not(.dark):not(.navy) .eyebrow::before { background: var(--royal); }
+
+  h1.title {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: var(--type-title);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    margin: 0 0 var(--gap-title) 0;
+    text-wrap: balance;
+  }
+  h1.title em {
+    font-style: normal;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-style: italic;
+    color: var(--gold);
+  }
+  .frame:not(.dark):not(.navy) h1.title em { color: var(--royal); }
+
+  .subhead {
+    font-family: var(--body-font);
+    font-weight: 400;
+    font-size: var(--type-subtitle);
+    line-height: 1.25;
+    margin: -28px 0 var(--gap-title) 0;
+    color: var(--ink-soft);
+    max-width: 1500px;
+    text-wrap: pretty;
+  }
+  .dark .subhead, .navy .subhead { color: #c7d2e8; }
+
+  .body { font-size: var(--type-body); line-height: 1.45; }
+  .small { font-size: var(--type-small); }
+
+  /* Footer page label */
+  .pagemark {
+    position: absolute;
+    left: var(--pad-x); bottom: 44px;
+    font-family: var(--display-font);
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: flex; align-items: center; gap: 18px;
+  }
+  .dark .pagemark, .navy .pagemark { color: rgba(255,255,255,0.55); }
+  .pagemark .dot { width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+
+  .corner-brand {
+    position: absolute;
+    right: var(--pad-x); bottom: 44px;
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .dark .corner-brand, .navy .corner-brand { color: rgba(255,255,255,0.55); }
+
+  /* ============== SLIDE 1: COVER ============== */
+  .cover {
+    background:
+      radial-gradient(ellipse 70% 50% at 85% 20%, rgba(245,166,35,0.18), transparent 60%),
+      radial-gradient(ellipse 60% 50% at 10% 85%, rgba(42,111,219,0.30), transparent 60%),
+      linear-gradient(180deg, #061a45 0%, #04153a 100%);
+  }
+  .cover-grid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+  .cover-mark {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    margin-bottom: 36px;
+  }
+  .cover-mark span { color: var(--gold); }
+  .cover h1 {
+    font-family: var(--display-font);
+    font-weight: 800;
+    font-size: var(--type-hero);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin: 0 0 56px 0;
+  }
+  .cover h1 .line2 { color: var(--gold); display: block; font-style: italic; font-family: var(--serif); font-weight: 500; }
+  .cover-tag {
+    font-size: var(--type-subtitle);
+    line-height: 1.25;
+    color: #c7d2e8;
+    max-width: 950px;
+    margin-bottom: 64px;
+    text-wrap: pretty;
+  }
+  .cover-meta {
+    display: flex; gap: 60px; align-items: center;
+    padding-top: 36px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+    font-family: var(--display-font);
+  }
+  .cover-meta .item .k { font-size: 24px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+  .cover-meta .item .v { font-size: 30px; color: #fff; font-weight: 600; }
+  .cover-side {
+    align-self: stretch;
+    display: flex; flex-direction: column;
+    justify-content: center;
+    gap: 24px;
+  }
+  .cover-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-left: 4px solid var(--gold);
+    padding: 36px 40px;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+  }
+  .cover-card .k { font-family: var(--display-font); font-size: 24px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 700; }
+  .cover-card .v { font-size: 30px; color: #fff; font-weight: 500; line-height: 1.3; }
+  .cover-card.alt { border-left-color: var(--royal-bright); }
+  .cover-card.alt .k { color: var(--royal-bright); }
+
+  /* ============== Generic slide chrome ============== */
+  .slide-num {
+    position: absolute;
+    top: 56px; right: var(--pad-x);
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .dark .slide-num, .navy .slide-num { color: rgba(255,255,255,0.45); }
+  .slide-num strong { color: var(--gold); font-weight: 700; }
+  .frame:not(.dark):not(.navy) .slide-num strong { color: var(--royal); }
+
+  /* ============== SLIDE 2: Opportunity ============== */
+  .opp-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 80px; align-items: stretch; }
+  .opp-lead { font-size: 34px; line-height: 1.45; color: #d8e1f2; max-width: 760px; }
+  .opp-lead strong { color: #fff; font-weight: 600; }
+  .opp-table { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; overflow: hidden; align-self: start; }
+  .opp-row { display: grid; grid-template-columns: 1.1fr 2fr; padding: 32px 36px; border-bottom: 1px solid rgba(255,255,255,0.10); align-items: center; }
+  .opp-row:last-child { border-bottom: none; }
+  .opp-row .name { font-family: var(--display-font); font-weight: 700; font-size: 36px; color: var(--gold); }
+  .opp-row .name .sub { display: block; font-family: var(--body-font); font-weight: 400; font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(255,255,255,0.6); margin-top: 8px; }
+  .opp-row .desc { font-size: 24px; line-height: 1.4; color: #d8e1f2; }
+  .opp-row.header { background: rgba(245,166,35,0.10); }
+  .opp-row.header .name { color: #fff; font-size: 26px; letter-spacing: 0.22em; text-transform: uppercase; }
+  .opp-row.header .desc { font-family: var(--display-font); font-size: 26px; letter-spacing: 0.22em; text-transform: uppercase; color: #fff; }
+
+  /* ============== SLIDE 3: Mission ============== */
+  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; flex: 1; }
+  .mission-card {
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-top: 6px solid var(--royal);
+    border-radius: 10px;
+    padding: 56px 56px 60px;
+    display: flex; flex-direction: column;
+  }
+  .mission-card.vision { border-top-color: var(--gold); }
+  .mission-card .label { font-family: var(--display-font); font-weight: 700; font-size: 26px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--royal); margin-bottom: 28px; }
+  .mission-card.vision .label { color: var(--gold); }
+  .mission-card .quote {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 1.25;
+    color: var(--ink);
+    text-wrap: pretty;
+  }
+  .mission-card .quote em { color: var(--royal); font-style: italic; }
+  .mission-card.vision .quote em { color: var(--gold); }
+
+  /* ============== SLIDE 4: Differentiators ============== */
+  .diff-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; flex: 1; }
+  .diff-card {
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    padding: 44px 36px 44px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .diff-card::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 6px;
+    background: var(--royal);
+  }
+  .diff-card:nth-child(2)::before { background: var(--gold); }
+  .diff-card:nth-child(3)::before { background: var(--phase-4); }
+  .diff-card:nth-child(4)::before { background: var(--phase-3); }
+  .diff-card .num {
+    font-family: var(--display-font);
+    font-weight: 800;
+    font-size: 80px;
+    line-height: 1;
+    color: var(--royal);
+    margin: 12px 0 24px;
+    letter-spacing: -0.03em;
+  }
+  .diff-card:nth-child(2) .num { color: var(--gold); }
+  .diff-card:nth-child(3) .num { color: var(--phase-4); }
+  .diff-card:nth-child(4) .num { color: var(--phase-3); }
+  .diff-card h3 {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 30px;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 18px 0;
+  }
+  .diff-card p {
+    font-size: 24px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .diff-card .hi {
+    margin-top: auto;
+    padding-top: 24px;
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--ink);
+  }
+
+  /* ============== SLIDE 5: Pricing ============== */
+  .price-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; flex: 1; min-height: 0; padding-bottom: 28px; }
+  .price-card {
+    background: var(--royal);
+    color: #fff;
+    border-radius: 12px;
+    padding: 36px 44px 40px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .price-card.advanced { background: var(--panel); color: var(--ink); border: 2px solid var(--royal); }
+  .price-card .ribbon {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: #fff;
+    margin-bottom: 18px;
+  }
+  .price-card.advanced .ribbon { color: var(--royal); }
+  .price-card h2 {
+    font-family: var(--display-font);
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: #fff;
+    margin: 0 0 14px 0;
+  }
+  .price-card.advanced h2 { color: var(--royal); }
+  .price-card .hours {
+    font-family: var(--display-font);
+    font-size: 28px;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .price-card.advanced .hours { color: var(--gold-warm); color: #b07a13; }
+  .price-card ul {
+    list-style: none; padding: 0; margin: 0 0 22px;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+  .price-card.advanced ul { border-top-color: rgba(10,23,51,0.15); }
+  .price-card li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+    font-size: 24px;
+    line-height: 1.3;
+    display: flex; gap: 18px; align-items: baseline;
+  }
+  .price-card.advanced li { border-bottom-color: rgba(10,23,51,0.10); }
+  .price-card li::before {
+    content: "▸";
+    color: var(--gold);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .price-card .best {
+    margin-top: auto;
+    background: rgba(0,0,0,0.18);
+    padding: 18px 24px;
+    border-radius: 8px;
+    font-size: 24px;
+    line-height: 1.35;
+  }
+  .price-card.advanced .best { background: #fff; border: 1px solid var(--line-dark); }
+  .price-card .best b { display: block; font-family: var(--display-font); font-weight: 700; font-size: 24px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .price-card.advanced .best b { color: var(--royal); }
+
+  /* ============== SLIDE 6: Feature comparison ============== */
+  .feat-table {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .feat-head {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    background: var(--navy);
+    color: #fff;
+  }
+  .feat-head > div {
+    padding: 26px 36px;
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+  }
+  .feat-head .standard { background: var(--royal); text-align: center; }
+  .feat-head .advanced { background: var(--gold); color: var(--navy); text-align: center; }
+  .feat-row {
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr;
+    border-top: 1px solid var(--line-dark);
+    font-size: 24px;
+    line-height: 1.35;
+  }
+  .feat-row > div { padding: 20px 36px; display: flex; align-items: center; }
+  .feat-row .feat { font-weight: 600; color: var(--ink); }
+  .feat-row .standard, .feat-row .advanced { justify-content: center; text-align: center; color: var(--ink-soft); }
+  .feat-row .check { color: var(--phase-4); font-weight: 700; font-size: 26px; }
+  .feat-row.highlight { background: var(--panel-2); }
+
+  /* ============== SLIDE 7: Journey overview ============== */
+  .journey {
+    flex: 1;
+    display: flex; flex-direction: column;
+    gap: 26px;
+  }
+  .journey-bar {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+    position: relative;
+  }
+  .journey-step {
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    padding: 36px 32px 32px;
+    display: flex; flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+  .journey-step .ph {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--phase-1);
+    padding: 8px 14px;
+    border-radius: 4px;
+    align-self: flex-start;
+    margin-bottom: 22px;
+  }
+  .journey-step:nth-child(2) .ph { background: var(--phase-2); }
+  .journey-step:nth-child(3) .ph { background: var(--phase-3); }
+  .journey-step:nth-child(4) .ph { background: var(--phase-4); }
+  .journey-step:nth-child(5) .ph { background: var(--phase-5); }
+  .journey-step h3 {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 1.18;
+    color: var(--ink);
+    margin: 0 0 20px 0;
+  }
+  .journey-step .hrs {
+    font-family: var(--display-font);
+    font-size: 24px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 18px;
+    line-height: 1.4;
+  }
+  .journey-step .hrs .std { display: block; color: var(--royal); font-size: 24px; }
+  .journey-step .hrs .adv { display: block; color: var(--gold); margin-top: 4px; font-size: 24px; }
+  .journey-step p {
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .journey-step.opt {
+    background: var(--panel);
+    border: 1px dashed var(--gold);
+  }
+  .journey-step.opt .hrs .std { color: var(--phase-5); }
+
+  .journey-axis {
+    display: flex; align-items: stretch; gap: 0;
+    font-family: var(--display-font);
+    margin-bottom: 4px;
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .axis-label {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 18px 32px;
+    flex: 0 0 auto;
+  }
+  .axis-label .axis-k {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+  .axis-label .axis-v {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+  }
+  .axis-label.start .axis-v { color: var(--royal); }
+  .axis-label.finish { background: var(--navy); }
+  .axis-label.finish .axis-k { color: rgba(255,255,255,0.55); }
+  .axis-label.finish .axis-v { color: var(--gold); }
+  .axis-track {
+    flex: 1;
+    background: linear-gradient(90deg, rgba(22,86,199,0.18) 0%, rgba(22,86,199,0.45) 30%, rgba(245,166,35,0.45) 70%, rgba(245,166,35,0.18) 100%);
+    display: flex; align-items: center; justify-content: flex-end;
+    padding-right: 28px;
+  }
+  .axis-arrow {
+    font-family: var(--display-font);
+    font-weight: 800;
+    font-size: 36px;
+    color: var(--gold);
+    line-height: 1;
+  }
+  .flex-note {
+    margin: -28px 0 28px;
+    font-size: 26px;
+    line-height: 1.4;
+    color: var(--ink-soft);
+    max-width: 1500px;
+    font-style: italic;
+  }
+
+  /* ============== SLIDES 8/9: Phase details ============== */
+  .phase-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; flex: 1; }
+  .phase-block {
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .phase-block .head {
+    background: var(--phase-1);
+    color: #fff;
+    padding: 26px 36px;
+    display: flex; align-items: center; gap: 24px;
+  }
+  .phase-block.p2 .head { background: var(--phase-2); }
+  .phase-block.p3 .head { background: var(--phase-3); }
+  .phase-block.p4 .head { background: var(--phase-4); }
+  .phase-block.p5 .head { background: var(--phase-5); color: var(--navy); }
+  .phase-block .head .ph {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 24px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    opacity: 0.8;
+  }
+  .phase-block .head .title-text {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 32px;
+    letter-spacing: 0.01em;
+    flex: 1;
+  }
+  .phase-block .head .hrs {
+    font-family: var(--display-font);
+    font-size: 24px;
+    font-weight: 600;
+    text-align: right;
+    line-height: 1.35;
+    opacity: 0.95;
+  }
+  .phase-block ul {
+    list-style: none; padding: 32px 40px 36px; margin: 0;
+  }
+  .phase-block li {
+    font-size: 24px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding: 12px 0 12px 32px;
+    position: relative;
+  }
+  .phase-block li::before {
+    content: "▸";
+    position: absolute; left: 0; top: 12px;
+    color: var(--royal);
+    font-weight: 700;
+  }
+  .phase-block.p3 li::before { color: var(--phase-3); }
+  .phase-block.p4 li::before { color: var(--phase-4); }
+  .phase-block.p5 li::before { color: var(--phase-5); }
+
+  /* ============== SLIDE 10: Phase 5 detail ============== */
+  .p5-frame { background: linear-gradient(180deg, #061a45 0%, #04153a 100%); }
+  .p5-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 80px; flex: 1; align-items: center; }
+  .p5-callout {
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 12px;
+    padding: 56px 60px;
+  }
+  .p5-callout .tag { font-family: var(--display-font); font-weight: 700; font-size: 24px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--navy); margin-bottom: 24px; opacity: 0.7; }
+  .p5-callout h2 { font-family: var(--display-font); font-weight: 800; font-size: 56px; line-height: 1.05; letter-spacing: -0.015em; margin: 0 0 28px 0; }
+  .p5-callout p { font-size: 26px; line-height: 1.45; margin: 0; color: var(--navy); }
+  .p5-list { list-style: none; padding: 0; margin: 0; }
+  .p5-list li {
+    font-size: 28px;
+    line-height: 1.45;
+    color: #d8e1f2;
+    padding: 18px 0 18px 48px;
+    border-bottom: 1px solid rgba(255,255,255,0.10);
+    position: relative;
+  }
+  .p5-list li:last-child { border-bottom: none; }
+  .p5-list li::before {
+    content: ""; position: absolute; left: 0; top: 32px;
+    width: 24px; height: 2px; background: var(--gold);
+  }
+  .p5-list li b { color: #fff; font-weight: 600; }
+
+  /* ============== SLIDE 11: Mentor team ============== */
+  .mentor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; flex: 1; }
+  .mentor-card {
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    padding: 0;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .mentor-card .head {
+    background: var(--navy);
+    color: #fff;
+    padding: 24px 36px;
+  }
+  .mentor-card.subj .head { background: var(--royal); }
+  .mentor-card .head .label { font-family: var(--display-font); font-weight: 700; font-size: 24px; letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+  .mentor-card .head .name { font-family: var(--display-font); font-weight: 700; font-size: 36px; line-height: 1.1; }
+  .mentor-card .head .num { font-family: var(--display-font); font-weight: 700; font-size: 24px; color: var(--gold); margin-top: 10px; }
+  .mentor-card ul { list-style: none; padding: 22px 36px 28px; margin: 0; }
+  .mentor-card li { font-size: 24px; line-height: 1.4; color: var(--ink); padding: 10px 0 10px 28px; position: relative; }
+  .mentor-card li::before { content: "▸"; position: absolute; left: 0; top: 12px; color: var(--royal); font-weight: 700; }
+
+  .mentor-areas {
+    margin-top: 18px;
+    padding: 18px 32px;
+    background: var(--panel);
+    border-radius: 10px;
+    display: flex; flex-wrap: wrap; gap: 10px 14px;
+    font-family: var(--display-font);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--navy);
+    align-items: center;
+  }
+  .mentor-areas .label { font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; font-size: 24px; color: var(--royal); margin-right: 8px; align-self: center; }
+  .mentor-areas span.area { background: #fff; border: 1px solid var(--line-dark); padding: 6px 14px; border-radius: 999px; font-size: 24px; }
+
+  /* ============== SLIDE 12: Scholarships ============== */
+  .schol-grid { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 64px; flex: 1; align-items: center; }
+  .schol-hero { color: #fff; }
+  .schol-hero .big {
+    font-family: var(--display-font);
+    font-weight: 800;
+    font-size: 200px;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .schol-hero .big-sub {
+    font-family: var(--display-font);
+    font-weight: 700;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 36px;
+  }
+  .schol-hero p {
+    font-size: 28px; line-height: 1.45; color: #c7d2e8; max-width: 720px;
+  }
+  .schol-cards { display: flex; flex-direction: column; gap: 18px; }
+  .schol-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-left: 4px solid var(--gold);
+    border-radius: 8px;
+    padding: 28px 36px;
+  }
+  .schol-card .k { font-family: var(--display-font); font-weight: 700; font-size: 24px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+  .schol-card .v { font-size: 24px; line-height: 1.4; color: #fff; }
+
+  /* ============== SLIDE 13: Comparison ============== */
+  .cmp-table {
+    flex: 1;
+    background: #fff;
+    border: 1px solid var(--line-dark);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .cmp-head {
+    display: grid; grid-template-columns: 1.6fr 0.8fr 1.2fr 1fr 1fr;
+    background: var(--navy);
+    color: #fff;
+  }
+  .cmp-head > div { padding: 22px 28px; font-family: var(--display-font); font-weight: 700; font-size: 24px; letter-spacing: 0.14em; text-transform: uppercase; }
+  .cmp-row { display: grid; grid-template-columns: 1.6fr 0.8fr 1.2fr 1fr 1fr; border-top: 1px solid var(--line-dark); font-size: 24px; }
+  .cmp-row > div { padding: 18px 28px; display: flex; align-items: center; color: var(--ink-soft); }
+  .cmp-row .name { font-family: var(--display-font); font-weight: 600; color: var(--ink); }
+  .cmp-row .x { color: #c83a3a; font-weight: 700; }
+  .cmp-row .ok { color: var(--phase-4); font-weight: 700; }
+  .cmp-row.us { background: var(--navy); color: #fff; }
+  .cmp-row.us > div { color: #fff; }
+  .cmp-row.us .name { color: var(--gold); font-weight: 700; font-size: 26px; }
+  .cmp-row.us .ok { color: var(--gold); }
+
+  .cmp-take {
+    margin-top: 32px;
+    padding: 28px 40px;
+    background: var(--gold);
+    color: var(--navy);
+    border-radius: 10px;
+    font-family: var(--display-font);
+    font-weight: 600;
+    font-size: 30px;
+    line-height: 1.3;
+    text-align: center;
+  }
+  .cmp-take b { font-weight: 800; }
+
+  /* ============== SLIDE 14: Closing ============== */
+  .close-frame {
+    background:
+      radial-gradient(ellipse 50% 50% at 80% 30%, rgba(245,166,35,0.20), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 10% 90%, rgba(42,111,219,0.30), transparent 60%),
+      linear-gradient(180deg, #061a45 0%, #04153a 100%);
+  }
+  .close-content { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+  .close-content h1 {
+    font-family: var(--display-font);
+    font-weight: 800;
+    font-size: 108px;
+    line-height: 0.95;
+    letter-spacing: -0.025em;
+    color: #fff;
+    margin: 0 0 24px 0;
+    max-width: 1500px;
+  }
+  .close-content h1 em { font-style: italic; font-family: var(--serif); font-weight: 500; color: var(--gold); }
+  .close-content .sub { font-size: 38px; line-height: 1.3; color: #c7d2e8; max-width: 1300px; margin-bottom: 72px; }
+  .close-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+  .close-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 10px;
+    padding: 36px 40px 40px;
+  }
+  .close-card .k { font-family: var(--display-font); font-weight: 700; font-size: 24px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .close-card .v { font-size: 26px; line-height: 1.4; color: #fff; }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080" data-om-id="fedb9fba:7" style="--deck-rail-w: 188px;">
+
+  <!-- =================== SLIDE 1: COVER =================== -->
+  <section data-label="01 Cover" data-om-id="fedb9fba:8" data-screen-label="01 01 Cover" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="0">
+    <div class="frame dark cover" data-om-id="fedb9fba:9">
+      <div class="cover-mark" data-om-id="fedb9fba:10"><span data-om-id="fedb9fba:11">●</span>&nbsp;&nbsp;SPARK RESEARCH INDIA · PROGRAMME PITCH</div>
+      <div class="cover-grid" data-om-id="fedb9fba:12">
+        <div data-om-id="fedb9fba:13">
+          <h1 data-om-id="fedb9fba:14">
+            From a spark<br data-om-id="fedb9fba:15">
+            <span class="line2" data-om-id="fedb9fba:16">to the world stage.</span>
+          </h1>
+          <div class="cover-tag" data-om-id="fedb9fba:17">A mentorship programme guiding Indian students from a research idea to the IRIS National Fair — and on to ISEF, the world's largest pre‑college science competition.</div>
+          <div class="cover-meta" data-om-id="fedb9fba:18">
+            <div class="item" data-om-id="fedb9fba:19"><div class="k" data-om-id="fedb9fba:20">For</div><div class="v" data-om-id="fedb9fba:21">Classes 8–12</div></div>
+            <div class="item" data-om-id="fedb9fba:25"><div class="k" data-om-id="fedb9fba:26">Pathway</div><div class="v" data-om-id="fedb9fba:27">IRIS → ISEF</div></div>
+          </div>
+        </div>
+        <div class="cover-side" data-om-id="fedb9fba:28">
+          <div class="cover-card alt" data-om-id="fedb9fba:29">
+            <div class="k" data-om-id="fedb9fba:30">Standard Programme</div>
+            <div class="v" data-om-id="fedb9fba:31">₹20,000 · 20 hours of 1:1 research mentorship</div>
+          </div>
+          <div class="cover-card" data-om-id="fedb9fba:32">
+            <div class="k" data-om-id="fedb9fba:33">Advanced Programme</div>
+            <div class="v" data-om-id="fedb9fba:34">₹30,000 · 35 hours — IRIS Finals &amp; ISEF prep</div>
+          </div>
+          <div class="cover-card alt" style="border-left-color: #fff;" data-om-id="fedb9fba:35">
+            <div class="k" style="color:#fff;" data-om-id="fedb9fba:36">Full Scholarships</div>
+            <div class="v" data-om-id="fedb9fba:37">100% fee waiver for students from underprivileged backgrounds</div>
+          </div>
+        </div>
+      </div>
+      <div class="pagemark" data-om-id="fedb9fba:38"><span class="dot" data-om-id="fedb9fba:39"></span>SPARK RESEARCH INDIA</div>
+      <div class="corner-brand" data-om-id="fedb9fba:40">01</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 2: OPPORTUNITY =================== -->
+  <section data-label="02 Opportunity" data-om-id="fedb9fba:41" data-screen-label="02 02 Opportunity" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="1">
+    <div class="frame navy" data-om-id="fedb9fba:42">
+      <div class="slide-num" data-om-id="fedb9fba:43"><strong data-om-id="fedb9fba:44">02</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:45">The Opportunity</p>
+      <h1 class="title" data-om-id="fedb9fba:46">India produces brilliant young scientists — <em data-om-id="fedb9fba:47">most never hear of IRIS.</em></h1>
+      <div class="opp-grid" data-om-id="fedb9fba:48">
+        <div data-om-id="fedb9fba:49">
+          <p class="opp-lead" data-om-id="fedb9fba:50">
+            The <strong data-om-id="fedb9fba:51">IRIS National Fair</strong> is India's premier pre‑college science competition. Top performers earn a place on Team India at <strong data-om-id="fedb9fba:52">ISEF</strong>, the world's largest pre‑college STEM stage held annually in the USA.
+          </p>
+          <p class="opp-lead" style="margin-top: 32px;" data-om-id="fedb9fba:53">
+            Yet only a fraction of Indian students ever discover the IRIS → ISEF pathway, let alone receive the structured mentorship needed to compete at this level. <strong data-om-id="fedb9fba:54">That is the gap we exist to close.</strong>
+          </p>
+        </div>
+        <div class="opp-table" data-om-id="fedb9fba:55">
+          <div class="opp-row header" data-om-id="fedb9fba:56">
+            <div class="name" data-om-id="fedb9fba:57">Competition</div>
+            <div class="desc" data-om-id="fedb9fba:58">Who &amp; Where</div>
+          </div>
+          <div class="opp-row" data-om-id="fedb9fba:59">
+            <div class="name" data-om-id="fedb9fba:60">IRIS<span class="sub" data-om-id="fedb9fba:61">National Fair, India</span></div>
+            <div class="desc" data-om-id="fedb9fba:62">Open to Classes 5–12 · Free to participate · Pan‑India</div>
+          </div>
+          <div class="opp-row" data-om-id="fedb9fba:63">
+            <div class="name" data-om-id="fedb9fba:64">ISEF<span class="sub" data-om-id="fedb9fba:65">Regeneron Int'l, USA</span></div>
+            <div class="desc" data-om-id="fedb9fba:66">Top IRIS performers represent Team India · Held annually in the USA</div>
+          </div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:69">02 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 3: MISSION =================== -->
+  <section data-label="03 Mission" data-om-id="fedb9fba:70" data-screen-label="03 03 Mission" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="2">
+    <div class="frame" data-om-id="fedb9fba:71">
+      <div class="slide-num" data-om-id="fedb9fba:72"><strong data-om-id="fedb9fba:73">03</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:74">Our Mission</p>
+      <h1 class="title" data-om-id="fedb9fba:75">Why <em data-om-id="fedb9fba:76">Spark Research India</em> exists.</h1>
+      <div class="mission-grid" data-om-id="fedb9fba:77">
+        <div class="mission-card" data-om-id="fedb9fba:78">
+          <div class="label" data-om-id="fedb9fba:79">Mission</div>
+          <div class="quote" data-om-id="fedb9fba:80">To make rigorous, world‑class science research mentorship <em data-om-id="fedb9fba:81">accessible to every motivated Indian student</em> — regardless of city, school, or economic background.</div>
+        </div>
+        <div class="mission-card vision" data-om-id="fedb9fba:82">
+          <div class="label" data-om-id="fedb9fba:83">Vision</div>
+          <div class="quote" data-om-id="fedb9fba:84">A future where India consistently fields <em data-om-id="fedb9fba:85">strong, well‑prepared teams at ISEF</em> — and where research thinking shapes how Indian students approach every challenge.</div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:88">03 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 4: DIFFERENTIATORS =================== -->
+  <section data-label="04 What Makes Us Different" data-om-id="fedb9fba:89" data-screen-label="04 04 What Makes Us Different" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="3">
+    <div class="frame" data-om-id="fedb9fba:90">
+      <div class="slide-num" data-om-id="fedb9fba:91"><strong data-om-id="fedb9fba:92">04</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:93">What Makes Us Different</p>
+      <h1 class="title" data-om-id="fedb9fba:94">Four reasons this programme is <em data-om-id="fedb9fba:95">built for India.</em></h1>
+      <div class="diff-grid" data-om-id="fedb9fba:96">
+        <div class="diff-card" data-om-id="fedb9fba:97">
+          <div class="num" data-om-id="fedb9fba:98">01</div>
+          <h3 data-om-id="fedb9fba:99">India‑First Design</h3>
+          <p data-om-id="fedb9fba:100">The only mentorship programme built specifically for the IRIS → ISEF pathway. Every session maps to IRIS judging criteria.</p>
+          <div class="hi" data-om-id="fedb9fba:101">IRIS‑aligned, end‑to‑end.</div>
+        </div>
+        <div class="diff-card" data-om-id="fedb9fba:102">
+          <div class="num" data-om-id="fedb9fba:103">02</div>
+          <h3 data-om-id="fedb9fba:104">Priced for India</h3>
+          <p data-om-id="fedb9fba:105">Global mentorship programmes charge ₹1.5–5 Lakh for similar support. We charge ₹20–30k — accessible to Indian families.</p>
+          <div class="hi" data-om-id="fedb9fba:106">10–20× more affordable.</div>
+        </div>
+        <div class="diff-card" data-om-id="fedb9fba:107">
+          <div class="num" data-om-id="fedb9fba:108">03</div>
+          <h3 data-om-id="fedb9fba:109">Full Scholarships</h3>
+          <p data-om-id="fedb9fba:110">Complete fee waivers for students from underprivileged communities. Great science should not depend on a bank balance.</p>
+          <div class="hi" data-om-id="fedb9fba:111">100% covered. No fee.</div>
+        </div>
+        <div class="diff-card" data-om-id="fedb9fba:112">
+          <div class="num" data-om-id="fedb9fba:113">04</div>
+          <h3 data-om-id="fedb9fba:114">Real Mentors</h3>
+          <p data-om-id="fedb9fba:115">A network of 20+ subject mentors across STEM and social science, coordinated by a core team of senior mentors.</p>
+          <div class="hi" data-om-id="fedb9fba:116">20+ specialists. One student.</div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:119">04 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 5: TWO PROGRAMMES =================== -->
+  <section data-label="05 Two Programmes" data-om-id="fedb9fba:120" data-screen-label="05 05 Two Programmes" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="4">
+    <div class="frame" data-om-id="fedb9fba:121">
+      <div class="slide-num" data-om-id="fedb9fba:122"><strong data-om-id="fedb9fba:123">05</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:124">The Two Programmes</p>
+      <h1 class="title" data-om-id="fedb9fba:125">Choose the programme that <em data-om-id="fedb9fba:126">fits the ambition.</em></h1>
+      <div class="price-grid" data-om-id="fedb9fba:127">
+        <div class="price-card" data-om-id="fedb9fba:128">
+          <div class="ribbon" data-om-id="fedb9fba:129">Standard Programme</div>
+          <h2 data-om-id="fedb9fba:130">₹20,000</h2>
+          <div class="hours" data-om-id="fedb9fba:131">20 Hours · Hours roll over</div>
+          <ul data-om-id="fedb9fba:132">
+            <li data-om-id="fedb9fba:133">Project Ideation with a dedicated mentor</li>
+            <li data-om-id="fedb9fba:134">Structured Research Planning</li>
+            <li data-om-id="fedb9fba:135">Mentorship &amp; Progress Reviews</li>
+            <li data-om-id="fedb9fba:136">IRIS Round 1 Submission Support</li>
+            <li data-om-id="fedb9fba:137">Remaining hours redirected to IRIS Finals prep</li>
+          </ul>
+          <div class="best" data-om-id="fedb9fba:138">
+            <b data-om-id="fedb9fba:139">Best For</b>
+            First‑time IRIS participants and budget‑conscious families starting their research journey.
+          </div>
+        </div>
+        <div class="price-card advanced" data-om-id="fedb9fba:140">
+          <div class="ribbon" data-om-id="fedb9fba:141">Advanced Programme</div>
+          <h2 data-om-id="fedb9fba:142">₹30,000</h2>
+          <div class="hours" data-om-id="fedb9fba:143">35 Hours · Hours roll over</div>
+          <ul data-om-id="fedb9fba:144">
+            <li data-om-id="fedb9fba:145">Everything in the Standard programme</li>
+            <li data-om-id="fedb9fba:146">Extended Research Planning depth</li>
+            <li data-om-id="fedb9fba:147">More Mentorship &amp; Progress Review sessions</li>
+            <li data-om-id="fedb9fba:148">Full IRIS Finals preparation included</li>
+            <li data-om-id="fedb9fba:149">Extended ISEF‑specific submission support</li>
+          </ul>
+          <div class="best" data-om-id="fedb9fba:150">
+            <b data-om-id="fedb9fba:151">Best For</b>
+            Students targeting IRIS Finals and a serious shot at ISEF — with more time, depth, and rehearsal.
+          </div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:154">05 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 6: FEATURE COMPARISON =================== -->
+  
+
+  <!-- =================== SLIDE 7: JOURNEY OVERVIEW =================== -->
+  <section data-label="07 Student Journey" data-om-id="fedb9fba:213" data-screen-label="07 07 Student Journey" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="6">
+    <div class="frame" data-om-id="fedb9fba:214">
+      <div class="slide-num" data-om-id="fedb9fba:215"><strong data-om-id="fedb9fba:216">07</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:217">The Student Journey</p>
+      <h1 class="title" data-om-id="fedb9fba:218">A ground‑up roadmap, <em data-om-id="fedb9fba:219">idea to world stage.</em></h1>
+      <p class="flex-note">Hours below are typical ranges — actual scheduling stays flexible across phases, and any unused hours roll over to the next phase at no extra cost.</p>
+      <div class="journey-axis" data-om-id="fedb9fba:220">
+        <span class="axis-label start"><span class="axis-k">Start</span><span class="axis-v from" data-om-id="fedb9fba:221">A Spark of Curiosity</span></span>
+        <span class="axis-track"><span class="axis-arrow">→</span></span>
+        <span class="axis-label finish"><span class="axis-k">Finish</span><span class="axis-v to" data-om-id="fedb9fba:222">ISEF, USA</span></span>
+      </div>
+      <div class="journey" data-om-id="fedb9fba:223">
+        <div class="journey-bar" data-om-id="fedb9fba:224">
+          <div class="journey-step" data-om-id="fedb9fba:225">
+            <div class="ph" data-om-id="fedb9fba:226">Phase 1</div>
+            <h3 data-om-id="fedb9fba:227">Project Ideation</h3>
+            <div class="hrs" data-om-id="fedb9fba:228"><span class="std" data-om-id="fedb9fba:229">4–6 hrs · Standard</span><span class="adv" data-om-id="fedb9fba:230">5–7 hrs · Advanced</span></div>
+            <p data-om-id="fedb9fba:231">1:1 sessions to find a high‑impact, feasible idea aligned to IRIS judging criteria.</p>
+          </div>
+          <div class="journey-step" data-om-id="fedb9fba:232">
+            <div class="ph" data-om-id="fedb9fba:233">Phase 2</div>
+            <h3 data-om-id="fedb9fba:234">Research Planning</h3>
+            <div class="hrs" data-om-id="fedb9fba:235"><span class="std" data-om-id="fedb9fba:236">4–6 hrs · Standard</span><span class="adv" data-om-id="fedb9fba:237">6–8 hrs · Advanced</span></div>
+            <p data-om-id="fedb9fba:238">Define the question, hypothesis, methodology, and a rigorous experimental plan.</p>
+          </div>
+          <div class="journey-step" data-om-id="fedb9fba:239">
+            <div class="ph" data-om-id="fedb9fba:240">Phase 3</div>
+            <h3 data-om-id="fedb9fba:241">Mentorship &amp; Reviews</h3>
+            <div class="hrs" data-om-id="fedb9fba:242"><span class="std" data-om-id="fedb9fba:243">6–8 hrs · Standard</span><span class="adv" data-om-id="fedb9fba:244">10–12 hrs · Advanced</span></div>
+            <p data-om-id="fedb9fba:245">Regular check‑ins to review data, unblock issues, and keep research quality high.</p>
+          </div>
+          <div class="journey-step" data-om-id="fedb9fba:246">
+            <div class="ph" data-om-id="fedb9fba:247">Phase 4</div>
+            <h3 data-om-id="fedb9fba:248">Submission Support</h3>
+            <div class="hrs" data-om-id="fedb9fba:249"><span class="std" data-om-id="fedb9fba:250">5–6 hrs · Both programmes</span><span class="adv" data-om-id="fedb9fba:251">Unused hours carry over</span></div>
+            <p data-om-id="fedb9fba:252">Polish IRIS submission, abstract and report; coach the Finals poster and presentation.</p>
+          </div>
+          <div class="journey-step opt" data-om-id="fedb9fba:253">
+            <div class="ph" data-om-id="fedb9fba:254">Phase 5</div>
+            <h3 data-om-id="fedb9fba:255">ISEF Mock Judging</h3>
+            <div class="hrs" data-om-id="fedb9fba:256"><span class="std" data-om-id="fedb9fba:257">Optional add‑on</span><span class="adv" data-om-id="fedb9fba:258">Activated upon ISEF selection</span></div>
+            <p data-om-id="fedb9fba:259">Simulated judging by verified ISEF alumni — final prep before the world stage.</p>
+          </div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:262">07 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 8: PHASES 1 & 2 =================== -->
+  <section data-label="08 Phases 1 and 2" data-om-id="fedb9fba:263" data-screen-label="08 08 Phases 1 and 2" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="7">
+    <div class="frame" data-om-id="fedb9fba:264">
+      <div class="slide-num" data-om-id="fedb9fba:265"><strong data-om-id="fedb9fba:266">08</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:267">Phases 1 &amp; 2</p>
+      <h1 class="title" data-om-id="fedb9fba:268">Finding the right idea, then <em data-om-id="fedb9fba:269">planning real research.</em></h1>
+      <div class="phase-stack" data-om-id="fedb9fba:270">
+        <div class="phase-block" data-om-id="fedb9fba:271">
+          <div class="head" data-om-id="fedb9fba:272">
+            <div data-om-id="fedb9fba:273">
+              <div class="ph" data-om-id="fedb9fba:274">Phase 01</div>
+              <div class="title-text" data-om-id="fedb9fba:275">Project Ideation</div>
+            </div>
+            <div class="hrs" style="margin-left:auto;" data-om-id="fedb9fba:276">4–6 hrs · Standard<br data-om-id="fedb9fba:277">5–7 hrs · Advanced</div>
+          </div>
+          <ul data-om-id="fedb9fba:278">
+            <li data-om-id="fedb9fba:279">1:1 sessions with a dedicated Ideation Mentor</li>
+            <li data-om-id="fedb9fba:280">Explore high‑impact ideas aligned to interests, skills and resources</li>
+            <li data-om-id="fedb9fba:281">Evaluate feasibility — time, equipment, and data access</li>
+            <li data-om-id="fedb9fba:282">Align with IRIS/ISEF judging criteria: creativity, scientific thought, thoroughness</li>
+            <li data-om-id="fedb9fba:283">Refine and lock the final research topic before moving forward</li>
+          </ul>
+        </div>
+        <div class="phase-block p2" data-om-id="fedb9fba:284">
+          <div class="head" data-om-id="fedb9fba:285">
+            <div data-om-id="fedb9fba:286">
+              <div class="ph" data-om-id="fedb9fba:287">Phase 02</div>
+              <div class="title-text" data-om-id="fedb9fba:288">Research Planning</div>
+            </div>
+            <div class="hrs" style="margin-left:auto;" data-om-id="fedb9fba:289">4–6 hrs · Standard<br data-om-id="fedb9fba:290">6–8 hrs · Advanced</div>
+          </div>
+          <ul data-om-id="fedb9fba:291">
+            <li data-om-id="fedb9fba:292">Create a clear, structured research plan document</li>
+            <li data-om-id="fedb9fba:293">Define the research question, hypothesis, variables and methodology</li>
+            <li data-om-id="fedb9fba:294">Plan experimental design or data collection approach</li>
+            <li data-om-id="fedb9fba:295">Check availability of materials, equipment and data sources</li>
+            <li data-om-id="fedb9fba:296">Align the plan with science fair expectations for rigour and originality</li>
+          </ul>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:299">08 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 9: PHASES 3 & 4 =================== -->
+  <section data-label="09 Phases 3 and 4" data-om-id="fedb9fba:300" data-screen-label="09 09 Phases 3 and 4" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="8">
+    <div class="frame" data-om-id="fedb9fba:301">
+      <div class="slide-num" data-om-id="fedb9fba:302"><strong data-om-id="fedb9fba:303">09</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:304">Phases 3 &amp; 4</p>
+      <h1 class="title" data-om-id="fedb9fba:305">Doing the work, then <em data-om-id="fedb9fba:306">submitting to win.</em></h1>
+      <div class="phase-stack" data-om-id="fedb9fba:307">
+        <div class="phase-block p3" data-om-id="fedb9fba:308">
+          <div class="head" data-om-id="fedb9fba:309">
+            <div data-om-id="fedb9fba:310">
+              <div class="ph" data-om-id="fedb9fba:311">Phase 03</div>
+              <div class="title-text" data-om-id="fedb9fba:312">Mentorship &amp; Progress Reviews</div>
+            </div>
+            <div class="hrs" style="margin-left:auto;" data-om-id="fedb9fba:313">6–8 hrs · Standard<br data-om-id="fedb9fba:314">10–12 hrs · Advanced</div>
+          </div>
+          <ul data-om-id="fedb9fba:315">
+            <li data-om-id="fedb9fba:316">Regular check‑in sessions with a dedicated Project Mentor</li>
+            <li data-om-id="fedb9fba:317">Review recent experiments, data and preliminary results against the plan</li>
+            <li data-om-id="fedb9fba:318">Identify and solve technical or practical blockers early</li>
+            <li data-om-id="fedb9fba:319">Adjust methods, timelines and next steps based on real progress</li>
+            <li data-om-id="fedb9fba:320">Ensure research quality meets IRIS standards throughout the process</li>
+          </ul>
+        </div>
+        <div class="phase-block p4" data-om-id="fedb9fba:321">
+          <div class="head" data-om-id="fedb9fba:322">
+            <div data-om-id="fedb9fba:323">
+              <div class="ph" data-om-id="fedb9fba:324">Phase 04</div>
+              <div class="title-text" data-om-id="fedb9fba:325">Competition Submission Support</div>
+            </div>
+            <div class="hrs" style="margin-left:auto;" data-om-id="fedb9fba:326">5–6 hrs · Both programmes<br data-om-id="fedb9fba:327">Unused hours carry over</div>
+          </div>
+          <ul data-om-id="fedb9fba:328">
+            <li data-om-id="fedb9fba:329">Guide the full IRIS Round 1 submission: structure, formatting, materials</li>
+            <li data-om-id="fedb9fba:330">Review and refine the research abstract, report and supporting docs</li>
+            <li data-om-id="fedb9fba:331">If selected for IRIS Finals: coaching on poster, slides and oral presentation</li>
+            <li data-om-id="fedb9fba:332">If advancing to ISEF: ISEF‑specific rules, display and judging support</li>
+            <li data-om-id="fedb9fba:333">Any unused hours from earlier phases are available here at no extra cost</li>
+          </ul>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:336">09 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 10: PHASE 5 =================== -->
+  <section data-label="10 Phase 5 ISEF Mock Judging" data-om-id="fedb9fba:337" data-screen-label="10 10 Phase 5 ISEF Mock Judging" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="9">
+    <div class="frame dark p5-frame" data-om-id="fedb9fba:338">
+      <div class="slide-num" data-om-id="fedb9fba:339"><strong data-om-id="fedb9fba:340">10</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:341">Phase 5 · Optional Add‑On</p>
+      <h1 class="title" data-om-id="fedb9fba:342">A dress rehearsal with people who <em data-om-id="fedb9fba:343">have stood on the ISEF floor.</em></h1>
+      <div class="p5-grid" data-om-id="fedb9fba:344">
+        <div class="p5-callout" data-om-id="fedb9fba:345">
+          <div class="tag" data-om-id="fedb9fba:346">Premium Add‑On</div>
+          <h2 data-om-id="fedb9fba:347">ISEF Alumni Mock Judging &amp; Feedback</h2>
+          <p data-om-id="fedb9fba:348">Activated only when a student is selected for ISEF. A full simulated judging round led by a panel of verified ISEF alumni — followed by detailed, actionable feedback before the real fair.</p>
+        </div>
+        <ul class="p5-list" data-om-id="fedb9fba:349">
+          <li data-om-id="fedb9fba:350"><b data-om-id="fedb9fba:351">Simulated judging</b> led by a panel of verified ISEF alumni</li>
+          <li data-om-id="fedb9fba:352">Student presents the project <b data-om-id="fedb9fba:353">exactly as in a real ISEF round</b></li>
+          <li data-om-id="fedb9fba:354">Detailed feedback on <b data-om-id="fedb9fba:355">clarity, depth, and poster quality</b></li>
+          <li data-om-id="fedb9fba:356">Actionable suggestions to strengthen <b data-om-id="fedb9fba:357">presentation and Q&amp;A performance</b></li>
+          <li data-om-id="fedb9fba:358">Final prep review before the student <b data-om-id="fedb9fba:359">represents India on the world stage</b></li>
+        </ul>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:362">10 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 11: MENTOR TEAM =================== -->
+  <section data-label="11 Mentor Team" data-om-id="fedb9fba:363" data-screen-label="11 11 Mentor Team" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="10">
+    <div class="frame" data-om-id="fedb9fba:364">
+      <div class="slide-num" data-om-id="fedb9fba:365"><strong data-om-id="fedb9fba:366">11</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:367">The Mentor Team</p>
+      <h1 class="title" data-om-id="fedb9fba:368">The <em data-om-id="fedb9fba:369">experts behind the journey.</em></h1>
+      <div class="mentor-grid" data-om-id="fedb9fba:370">
+        <div class="mentor-card" data-om-id="fedb9fba:371">
+          <div class="head" data-om-id="fedb9fba:372">
+            <div class="label" data-om-id="fedb9fba:373">Senior Mentors</div>
+            <div class="name" data-om-id="fedb9fba:374">Core Team</div>
+            <div class="num" data-om-id="fedb9fba:375">Programme leads &amp; coordinators</div>
+          </div>
+          <ul data-om-id="fedb9fba:376">
+            <li data-om-id="fedb9fba:377">Lead project ideation sessions</li>
+            <li data-om-id="fedb9fba:378">Match each student to the best‑fit subject mentor</li>
+            <li data-om-id="fedb9fba:379">Oversee research quality and IRIS alignment</li>
+            <li data-om-id="fedb9fba:380">Handle programme coordination and scheduling</li>
+            <li data-om-id="fedb9fba:381">Manage the scholarship evaluation process</li>
+          </ul>
+        </div>
+        <div class="mentor-card subj" data-om-id="fedb9fba:382">
+          <div class="head" data-om-id="fedb9fba:383">
+            <div class="label" data-om-id="fedb9fba:384">Subject Mentors</div>
+            <div class="name" data-om-id="fedb9fba:385">20+ Network</div>
+            <div class="num" data-om-id="fedb9fba:386">Domain experts across 10+ STEM categories</div>
+          </div>
+          <ul data-om-id="fedb9fba:387">
+            <li data-om-id="fedb9fba:388">Run mentorship and progress review sessions</li>
+            <li data-om-id="fedb9fba:389">Guide experimental design and data analysis</li>
+            <li data-om-id="fedb9fba:390">Support submission writing and formatting</li>
+            <li data-om-id="fedb9fba:391">Provide feedback on posters and presentations</li>
+            <li data-om-id="fedb9fba:392">Bring real lab and research experience to every session</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mentor-areas" data-om-id="fedb9fba:393">
+        <span class="label" data-om-id="fedb9fba:394">Research Areas</span>
+        <span class="area" data-om-id="fedb9fba:395">Biology &amp; Life Sciences</span>
+        <span class="area" data-om-id="fedb9fba:396">Environmental Science</span>
+        <span class="area" data-om-id="fedb9fba:397">Physics &amp; Engineering</span>
+        <span class="area" data-om-id="fedb9fba:398">Chemistry</span>
+        <span class="area" data-om-id="fedb9fba:399">Computer Science &amp; AI</span>
+        <span class="area" data-om-id="fedb9fba:400">Mathematics</span>
+        <span class="area" data-om-id="fedb9fba:401">Social &amp; Behavioural Science</span>
+        <span class="area" data-om-id="fedb9fba:402">Energy &amp; Sustainability</span>
+        <span class="area" data-om-id="fedb9fba:403">Materials Science</span>
+        <span class="area" data-om-id="fedb9fba:404">Medicine &amp; Health</span>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:407">11 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 12: SCHOLARSHIPS =================== -->
+  <section data-label="12 Scholarships" data-om-id="fedb9fba:408" data-screen-label="12 12 Scholarships" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="11">
+    <div class="frame navy" data-om-id="fedb9fba:409">
+      <div class="slide-num" data-om-id="fedb9fba:410"><strong data-om-id="fedb9fba:411">12</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:412">The Scholarship Programme</p>
+      <h1 class="title" data-om-id="fedb9fba:413">Great science should not depend on a <em data-om-id="fedb9fba:414">bank balance.</em></h1>
+      <div class="schol-grid" data-om-id="fedb9fba:415">
+        <div class="schol-hero" data-om-id="fedb9fba:416">
+          <div class="big" data-om-id="fedb9fba:417">100%</div>
+          <div class="big-sub" data-om-id="fedb9fba:418">Programme fee covered for selected students</div>
+          <p data-om-id="fedb9fba:419">Spark Research India is committed to ensuring that economic background never limits a student's potential. We offer full scholarships covering the entire programme fee — Standard or Advanced — to deserving students from underprivileged communities.</p>
+        </div>
+        <div class="schol-cards" data-om-id="fedb9fba:420">
+          <div class="schol-card" data-om-id="fedb9fba:421">
+            <div class="k" data-om-id="fedb9fba:422">Who Can Apply</div>
+            <div class="v" data-om-id="fedb9fba:423">Students from government schools, EWS families, SC/ST/OBC communities, or with demonstrated financial need.</div>
+          </div>
+          <div class="schol-card" data-om-id="fedb9fba:424">
+            <div class="k" data-om-id="fedb9fba:425">What's Covered</div>
+            <div class="v" data-om-id="fedb9fba:426">100% of the programme fee — all mentorship hours, materials and support, with no hidden costs.</div>
+          </div>
+          <div class="schol-card" data-om-id="fedb9fba:427">
+            <div class="k" data-om-id="fedb9fba:428">Selection Criteria</div>
+            <div class="v" data-om-id="fedb9fba:429">Scientific curiosity, a motivation letter, a teacher or school recommendation, and a short interview.</div>
+          </div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:432">12 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 13: COMPARISON =================== -->
+  <section data-label="13 How We Compare" data-om-id="fedb9fba:433" data-screen-label="13 13 How We Compare" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="12">
+    <div class="frame" data-om-id="fedb9fba:434">
+      <div class="slide-num" data-om-id="fedb9fba:435"><strong data-om-id="fedb9fba:436">13</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:437">How We Compare Globally</p>
+      <h1 class="title" data-om-id="fedb9fba:438">Comparable mentorship <em data-om-id="fedb9fba:439">costs 10–20× more, abroad.</em></h1>
+      <div class="cmp-table" data-om-id="fedb9fba:440">
+        <div class="cmp-head" data-om-id="fedb9fba:441">
+          <div data-om-id="fedb9fba:442">Programme</div>
+          <div data-om-id="fedb9fba:443">Location</div>
+          <div data-om-id="fedb9fba:444">Price (approx.)</div>
+          <div data-om-id="fedb9fba:445">IRIS‑Specific</div>
+          <div data-om-id="fedb9fba:446">India‑Focused</div>
+        </div>
+        <div class="cmp-row" data-om-id="fedb9fba:447">
+          <div class="name" data-om-id="fedb9fba:448">Polygence</div>
+          <div data-om-id="fedb9fba:449">USA</div>
+          <div data-om-id="fedb9fba:450">₹3.75 – 5.4 Lakh</div>
+          <div class="x" data-om-id="fedb9fba:451">✗ No</div>
+          <div class="x" data-om-id="fedb9fba:452">✗ No</div>
+        </div>
+        <div class="cmp-row" data-om-id="fedb9fba:453">
+          <div class="name" data-om-id="fedb9fba:454">YRI Fellowship</div>
+          <div data-om-id="fedb9fba:455">USA</div>
+          <div data-om-id="fedb9fba:456">₹2.5 Lakh</div>
+          <div class="x" data-om-id="fedb9fba:457">✗ No</div>
+          <div class="x" data-om-id="fedb9fba:458">✗ No</div>
+        </div>
+        <div class="cmp-row" data-om-id="fedb9fba:459">
+          <div class="name" data-om-id="fedb9fba:460">RISE Research</div>
+          <div data-om-id="fedb9fba:461">USA</div>
+          <div data-om-id="fedb9fba:462">₹1.6 – 2 Lakh</div>
+          <div class="x" data-om-id="fedb9fba:463">✗ No</div>
+          <div class="x" data-om-id="fedb9fba:464">✗ No</div>
+        </div>
+        <div class="cmp-row" data-om-id="fedb9fba:465">
+          <div class="name" data-om-id="fedb9fba:466">Pioneer Academics</div>
+          <div data-om-id="fedb9fba:467">USA</div>
+          <div data-om-id="fedb9fba:468">₹5.1 Lakh</div>
+          <div class="x" data-om-id="fedb9fba:469">✗ No</div>
+          <div class="x" data-om-id="fedb9fba:470">✗ No</div>
+        </div>
+        <div class="cmp-row" data-om-id="fedb9fba:471">
+          <div class="name" data-om-id="fedb9fba:472">Lumiere Education</div>
+          <div data-om-id="fedb9fba:473">USA</div>
+          <div data-om-id="fedb9fba:474">₹3.3 – 5 Lakh</div>
+          <div class="x" data-om-id="fedb9fba:475">✗ No</div>
+          <div class="x" data-om-id="fedb9fba:476">✗ No</div>
+        </div>
+        <div class="cmp-row us" data-om-id="fedb9fba:477">
+          <div class="name" data-om-id="fedb9fba:478">Spark Research India</div>
+          <div data-om-id="fedb9fba:479">India</div>
+          <div data-om-id="fedb9fba:480">₹20,000 – 30,000</div>
+          <div class="ok" data-om-id="fedb9fba:481">✓ Yes</div>
+          <div class="ok" data-om-id="fedb9fba:482">✓ Yes</div>
+        </div>
+      </div>
+      <div class="cmp-take" data-om-id="fedb9fba:483">The only India‑first programme built for the <b data-om-id="fedb9fba:484">IRIS → ISEF</b> pathway — at a fraction of the global cost.</div>
+      <div class="corner-brand" data-om-id="fedb9fba:487">13 / 14</div>
+    </div>
+  </section>
+
+  <!-- =================== SLIDE 14: CLOSING =================== -->
+  <section data-label="14 Closing" data-om-id="fedb9fba:488" data-screen-label="14 14 Closing" data-om-validate="no_overflowing_text,no_overlapping_text,slide_sized_text" data-deck-slide="13" data-deck-last-visible="">
+    <div class="frame dark close-frame" data-om-id="fedb9fba:489">
+      <div class="slide-num" data-om-id="fedb9fba:490"><strong data-om-id="fedb9fba:491">14</strong> / 14</div>
+      <p class="eyebrow" data-om-id="fedb9fba:492">For Teachers &amp; Schools</p>
+      <div class="close-content" data-om-id="fedb9fba:493">
+        <h1 data-om-id="fedb9fba:494">Give your students the research opportunity <em data-om-id="fedb9fba:495">you never had.</em></h1>
+        <div class="sub" data-om-id="fedb9fba:496">Spark Research India partners with teachers who see a curious mind and want to give it somewhere to go.</div>
+        <div class="close-grid" data-om-id="fedb9fba:497">
+          <div class="close-card" data-om-id="fedb9fba:498">
+            <div class="k" data-om-id="fedb9fba:499">Refer a Student</div>
+            <div class="v" data-om-id="fedb9fba:500">Share the programme with students in Classes 8–12 who are curious, motivated, and ready to do real research.</div>
+          </div>
+          <div class="close-card" data-om-id="fedb9fba:501">
+            <div class="k" data-om-id="fedb9fba:502">Nominate for a Scholarship</div>
+            <div class="v" data-om-id="fedb9fba:503">Teachers can recommend students from underprivileged backgrounds for a full 100% scholarship.</div>
+          </div>
+          <div class="close-card" data-om-id="fedb9fba:504">
+            <div class="k" data-om-id="fedb9fba:505">Become a Partner School</div>
+            <div class="v" data-om-id="fedb9fba:506">Bring an "IRIS Discovery Session" to your assembly and put your school on the national stage.</div>
+          </div>
+        </div>
+      </div>
+      <div class="corner-brand" data-om-id="fedb9fba:509">— END —</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>
