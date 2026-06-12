@@ -22,45 +22,30 @@ export default function Footer() {
         >
           {/* Brand column */}
           <div>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 12,
-                marginBottom: 16,
-              }}
-            >
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-                <circle cx="16" cy="16" r="16" fill="#f5a623" />
-                <path
-                  d="M16 7l2 6h6l-5 3.6 2 6L16 19l-5 3.6 2-6L8 13h6z"
-                  fill="#051d4d"
-                />
-              </svg>
-              <div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 800,
-                    fontSize: 14,
-                    letterSpacing: "0.14em",
-                    color: "#fff",
-                    lineHeight: 1,
-                  }}
-                >
-                  SPARK RESEARCH
-                </div>
-                <div
-                  style={{
-                    fontFamily: "var(--font-display)",
-                    fontWeight: 700,
-                    fontSize: 11,
-                    letterSpacing: "0.24em",
-                    color: "#f5a623",
-                  }}
-                >
-                  INDIA
-                </div>
+            <div style={{ marginBottom: 16 }}>
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 800,
+                  fontSize: 14,
+                  letterSpacing: "0.14em",
+                  color: "#fff",
+                  lineHeight: 1,
+                  marginBottom: 4,
+                }}
+              >
+                SPARK RESEARCH
+              </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 700,
+                  fontSize: 11,
+                  letterSpacing: "0.24em",
+                  color: "#f5a623",
+                }}
+              >
+                INDIA
               </div>
             </div>
             <p
@@ -77,7 +62,21 @@ export default function Footer() {
               pre-college science competition.
             </p>
             <a
-              href="mailto:sparkresearchindia@gmail.com"
+              href="mailto:ashwanth.sivakumar@gmail.com"
+              style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 600,
+                fontSize: 14,
+                color: "#9fb3d0",
+                textDecoration: "none",
+                display: "block",
+                marginBottom: 6,
+              }}
+            >
+              ashwanth.sivakumar@gmail.com
+            </a>
+            <a
+              href="tel:+919600114963"
               style={{
                 fontFamily: "var(--font-display)",
                 fontWeight: 600,
@@ -86,7 +85,7 @@ export default function Footer() {
                 textDecoration: "none",
               }}
             >
-              sparkresearchindia@gmail.com
+              +91 9600114963
             </a>
           </div>
 
@@ -110,7 +109,6 @@ export default function Footer() {
               { label: "Programmes", href: "#programme" },
               { label: "Mentors", href: "#mentors" },
               { label: "Scholarships", href: "#scholarship" },
-              { label: "For Schools", href: "#schools" },
             ].map((link) => (
               <a
                 key={link.label}
@@ -151,7 +149,6 @@ export default function Footer() {
               { label: "Standard Programme", href: "#register" },
               { label: "Advanced Programme", href: "#register" },
               { label: "Full Scholarship", href: "#register" },
-              { label: "School Partnership", href: "#schools" },
             ].map((link) => (
               <a
                 key={link.label}

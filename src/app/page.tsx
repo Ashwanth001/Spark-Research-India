@@ -7,7 +7,6 @@ import Mentors from "@/components/Mentors";
 import WhySRI from "@/components/WhySRI";
 import Scholarship from "@/components/Scholarship";
 import RegisterForm from "@/components/RegisterForm";
-import ForSchools from "@/components/ForSchools";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -23,7 +22,6 @@ export default function Home() {
         <Scholarship />
         <WhySRI />
         <RegisterForm />
-        <ForSchools />
       </main>
       <Footer />
     </>

@@ -6,7 +6,6 @@ const links = [
   { label: "Journey", href: "#journey" },
   { label: "Mentors", href: "#mentors" },
   { label: "Scholarship", href: "#scholarship" },
-  { label: "For Schools", href: "#schools" },
 ];
 
 export default function Nav() {
@@ -44,23 +43,7 @@ export default function Nav() {
         }}
       >
         {/* Logo */}
-        <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: 10 }}>
-          <span
-            style={{
-              width: 34,
-              height: 34,
-              borderRadius: "50%",
-              background: "#f5a623",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              flexShrink: 0,
-            }}
-          >
-            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M8 1L10.2 6.2L16 7L11.5 11.5L12.5 17L8 14.2L3.5 17L4.5 11.5L0 7L5.8 6.2L8 1Z" fill="#051d4d" />
-            </svg>
-          </span>
+        <a href="#" style={{ textDecoration: "none" }}>
           <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, letterSpacing: "0.06em", textTransform: "uppercase", color: "#fff" }}>
             Spark Research<span style={{ color: "#f5a623" }}> India</span>
           </span>

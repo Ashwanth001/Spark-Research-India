@@ -6,7 +6,7 @@ const actions = [
     body:
       "Bring Spark Research India into your school as a structured after-school or weekend programme. We handle all mentorship and coordination — you provide the students.",
     cta: "Discuss partnership",
-    href: "mailto:sparkresearchindia@gmail.com?subject=School%20Partnership%20Enquiry",
+    href: "mailto:ashwanth.sivakumar@gmail.com?subject=School%20Partnership%20Enquiry",
     accent: "#f5a623",
     textColor: "#051d4d",
   },
@@ -15,7 +15,7 @@ const actions = [
     body:
       "Know a student with exceptional potential? Teachers and counsellors can nominate students directly — nominated applications receive priority review.",
     cta: "Submit a nomination",
-    href: "#register",
+    href: "mailto:ashwanth.sivakumar@gmail.com?subject=Student%20Nomination",
     accent: "#1656c7",
     textColor: "#fff",
   },
@@ -24,7 +24,7 @@ const actions = [
     body:
       "Invite our team to run a free introductory workshop on scientific research and the IRIS pathway for your Class 8–12 students. No commitment required.",
     cta: "Request a workshop",
-    href: "mailto:sparkresearchindia@gmail.com?subject=Workshop%20Request",
+    href: "mailto:ashwanth.sivakumar@gmail.com?subject=Workshop%20Request",
     accent: "rgba(255,255,255,0.12)",
     textColor: "#fff",
     border: "1px solid rgba(255,255,255,0.2)",
