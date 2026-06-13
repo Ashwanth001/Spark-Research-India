@@ -53,7 +53,7 @@ function RadarRings() {
 
 /* ─── Typewriter hook ─── */
 function useTypewriter(text: string, startDelay = 900, charDelay = 44) {
-  const [chars, setChars] = useState(text.length); // start full for SSR
+  const [chars, setChars] = useState(0); // start empty
   const [active, setActive] = useState(false);
 
   useEffect(() => {
@@ -101,8 +101,13 @@ export default function Hero() {
     let stars: Star[] = [];
 
     function initStars() {
-      canvas!.width = canvas!.offsetWidth;
-      canvas!.height = canvas!.offsetHeight;
+      const dpr = window.devicePixelRatio || 1;
+  
+      // Scale internal resolution
+      canvas!.width = canvas!.offsetWidth * dpr;
+      canvas!.height = canvas!.offsetHeight * dpr;
+      ctx!.scale(dpr, dpr);
+
       stars = Array.from({ length: 88 }, () => ({
         x: Math.random() * canvas!.width,
         y: Math.random() * canvas!.height,
@@ -145,7 +150,12 @@ export default function Hero() {
       if (!document.hidden) raf = requestAnimationFrame(tick);
     }
 
-    const onVis = () => { if (!document.hidden) raf = requestAnimationFrame(tick); };
+    const onVis = () => { 
+      if (!document.hidden) {
+        cancelAnimationFrame(raf); // Kill the old loop first!
+        raf = requestAnimationFrame(tick); 
+      }
+    };
     document.addEventListener("visibilitychange", onVis);
 
     raf = requestAnimationFrame(tick);
