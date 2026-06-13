@@ -14,9 +14,9 @@
   --color-ink-soft: #34406b;
   --color-muted: #6b7896;
 
-  --font-display: "Sora", system-ui, sans-serif;
-  --font-body: "Manrope", system-ui, sans-serif;
-  --font-serif: "Fraunces", Georgia, serif;
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-serif: var(--font-serif);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
