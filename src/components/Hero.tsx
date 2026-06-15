@@ -13,7 +13,7 @@ function Starfield({ canvasRef }: { canvasRef: React.RefObject<HTMLCanvasElement
         width: "100%",
         height: "100%",
         pointerEvents: "none",
-        opacity: 0.65,
+        opacity: 0.7,
       }}
     />
   );
@@ -53,11 +53,11 @@ function RadarRings() {
 
 /* ─── Typewriter hook ─── */
 function useTypewriter(text: string, startDelay = 900, charDelay = 44) {
-  const [chars, setChars] = useState(0); // start empty
+  // ✅ FIX: Start with 0 to prevent the SSR text "flash" jump-cut
+  const [chars, setChars] = useState(0);
   const [active, setActive] = useState(false);
 
   useEffect(() => {
-    // Reset then type
     const t1 = setTimeout(() => {
       setChars(0);
       setActive(true);
@@ -101,19 +101,18 @@ export default function Hero() {
     let stars: Star[] = [];
 
     function initStars() {
+      // ✅ FIX: Scale for Retina/High-DPR displays so stars aren't blurry
       const dpr = window.devicePixelRatio || 1;
-  
-      // Scale internal resolution
       canvas!.width = canvas!.offsetWidth * dpr;
       canvas!.height = canvas!.offsetHeight * dpr;
       ctx!.scale(dpr, dpr);
 
-      stars = Array.from({ length: 88 }, () => ({
-        x: Math.random() * canvas!.width,
-        y: Math.random() * canvas!.height,
+      stars = Array.from({ length: 110 }, () => ({
+        x: Math.random() * canvas!.offsetWidth,
+        y: Math.random() * canvas!.offsetHeight,
         vx: (Math.random() - 0.5) * 0.055,
         vy: (Math.random() - 0.5) * 0.04,
-        r: Math.random() * 1.35 + 0.25,
+        r: Math.random() * 1.4 + 0.25,
         o: Math.random() * 0.55 + 0.18,
       }));
     }
@@ -134,11 +133,14 @@ export default function Hero() {
       mx += (tx - mx) * 0.05;
       my += (ty - my) * 0.05;
 
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      const logicalWidth = canvas.offsetWidth;
+      const logicalHeight = canvas.offsetHeight;
+
+      ctx.clearRect(0, 0, logicalWidth, logicalHeight);
 
       for (const s of stars) {
-        s.x = (s.x + s.vx + canvas.width) % canvas.width;
-        s.y = (s.y + s.vy + canvas.height) % canvas.height;
+        s.x = (s.x + s.vx + logicalWidth) % logicalWidth;
+        s.y = (s.y + s.vy + logicalHeight) % logicalHeight;
         const px = s.x + mx * 16;
         const py = s.y + my * 10;
         ctx.beginPath();
@@ -150,12 +152,14 @@ export default function Hero() {
       if (!document.hidden) raf = requestAnimationFrame(tick);
     }
 
+    // ✅ FIX: Cancel the old animation frame before requesting a new one
     const onVis = () => { 
       if (!document.hidden) {
-        cancelAnimationFrame(raf); // Kill the old loop first!
+        cancelAnimationFrame(raf); 
         raf = requestAnimationFrame(tick); 
       }
     };
+    
     document.addEventListener("visibilitychange", onVis);
 
     raf = requestAnimationFrame(tick);
@@ -209,9 +213,10 @@ export default function Hero() {
       style={{
         position: "relative",
         background: `
-          radial-gradient(ellipse 70% 50% at 85% 20%, rgba(245,166,35,0.12), transparent 60%),
-          radial-gradient(ellipse 60% 50% at 10% 85%, rgba(42,111,219,0.22), transparent 60%),
-          linear-gradient(180deg, #061a45 0%, #04153a 100%)
+          radial-gradient(ellipse 70% 50% at 85% 20%, rgba(245,166,35,0.1), transparent 60%),
+          radial-gradient(ellipse 60% 50% at 10% 85%, rgba(42,111,219,0.2), transparent 60%),
+          radial-gradient(ellipse 40% 60% at 50% 0%, rgba(22,86,199,0.12), transparent 55%),
+          linear-gradient(180deg, #040f28 0%, #030c21 100%)
         `,
         minHeight: "100vh",
         display: "flex",
@@ -222,6 +227,22 @@ export default function Hero() {
     >
       {/* Canvas */}
       <Starfield canvasRef={canvasRef} />
+
+      {/* Ambient glow orbs */}
+      <div aria-hidden style={{
+        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden",
+      }}>
+        <div style={{
+          position: "absolute", width: 600, height: 600, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(22,86,199,0.12) 0%, transparent 70%)",
+          top: "-10%", right: "-5%",
+        }} />
+        <div style={{
+          position: "absolute", width: 400, height: 400, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%)",
+          bottom: "5%", left: "15%",
+        }} />
+      </div>
 
       <div
         style={{
@@ -240,7 +261,6 @@ export default function Hero() {
       >
         {/* Left: copy */}
         <div>
-          {/* Headline with radar rings behind */}
           <div
             className="parallax-mid"
             style={{
@@ -347,7 +367,7 @@ export default function Hero() {
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.boxShadow = "0 0 0 6px rgba(245,166,35,0.22)";
+                el.style.boxShadow = "0 0 0 6px rgba(245,166,35,0.22), 0 8px 28px rgba(245,166,35,0.3)";
                 el.style.transform = "translateY(-2px)";
               }}
               onMouseLeave={(e) => {
@@ -366,21 +386,26 @@ export default function Hero() {
                 fontSize: 14,
                 letterSpacing: "0.04em",
                 color: "#fff",
-                border: "1.5px solid rgba(255,255,255,0.28)",
+                border: "1.5px solid rgba(255,255,255,0.22)",
+                background: "rgba(255,255,255,0.06)",
+                backdropFilter: "blur(12px)",
+                WebkitBackdropFilter: "blur(12px)",
                 padding: "15px 32px",
                 borderRadius: 6,
                 textDecoration: "none",
                 display: "inline-block",
-                transition: "border-color 0.2s, transform 0.15s ease-out",
+                transition: "border-color 0.2s, background 0.2s, transform 0.15s ease-out",
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "rgba(255,255,255,0.65)";
+                el.style.borderColor = "rgba(255,255,255,0.5)";
+                el.style.background = "rgba(255,255,255,0.1)";
                 el.style.transform = "translateY(-1px)";
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.borderColor = "rgba(255,255,255,0.28)";
+                el.style.borderColor = "rgba(255,255,255,0.22)";
+                el.style.background = "rgba(255,255,255,0.06)";
                 el.style.transform = "none";
               }}
             >
@@ -390,93 +415,128 @@ export default function Hero() {
 
         </div>
 
-        {/* Right: clean pricing overview */}
+        {/* Right: glass pricing panel */}
         <div
           style={{ display: "flex", flexDirection: "column", animation: "float-up 0.9s 0.3s cubic-bezier(0.16,1,0.3,1) both" }}
           className="hero-right parallax-near"
         >
-          {/* Standard */}
-          <div style={{ paddingBottom: 28 }}>
-            <div style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 13,
-              color: "#2a6fdb",
-              marginBottom: 8,
-            }}>
-              Standard
-            </div>
-            <div style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
-              color: "#fff",
-              marginBottom: 8,
-            }}>
-              ₹20,000
-            </div>
-            <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
-              20 hours · 1:1 mentorship · IRIS pathway
-            </div>
-          </div>
-
-          <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 28 }} />
-
-          {/* Advanced */}
-          <div style={{ paddingBottom: 28 }}>
-            <div style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 13,
-              color: "#f5a623",
-              marginBottom: 8,
-            }}>
-              Advanced
-            </div>
-            <div style={{
-              fontFamily: "var(--font-display)",
-              fontWeight: 800,
-              fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
-              letterSpacing: "-0.03em",
-              lineHeight: 1,
-              color: "#fff",
-              marginBottom: 8,
-            }}>
-              ₹30,000
-            </div>
-            <div style={{ fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
-              35 hours · IRIS Finals and ISEF preparation
-            </div>
-          </div>
-
-          <div style={{ height: 1, background: "rgba(255,255,255,0.1)", marginBottom: 28 }} />
-
-          {/* Scholarship note */}
-          <div style={{ fontSize: 15, color: "rgba(255,255,255,0.58)", lineHeight: 1.65, marginBottom: 24 }}>
-            Full scholarships available for students from underprivileged backgrounds. No documentation required upfront.
-          </div>
-
-          <a
-            href="#register"
+          <div
             style={{
-              alignSelf: "flex-start",
-              fontFamily: "var(--font-display)",
-              fontWeight: 700,
-              fontSize: 13,
-              color: "#fff",
-              textDecoration: "none",
-              borderBottom: "2px solid #f5a623",
-              paddingBottom: 2,
-              letterSpacing: "0.04em",
-              transition: "color 0.2s",
+              background: "rgba(255,255,255,0.05)",
+              backdropFilter: "blur(24px)",
+              WebkitBackdropFilter: "blur(24px)",
+              border: "1px solid rgba(255,255,255,0.12)",
+              borderRadius: 16,
+              padding: "36px 36px 32px",
+              boxShadow: "0 8px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
+              position: "relative",
+              overflow: "hidden",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f5a623"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff"; }}
           >
-            Apply for a programme →
-          </a>
+            {/* Inner glass highlight */}
+            <div aria-hidden style={{
+              position: "absolute",
+              top: 0, left: 0, right: 0,
+              height: 1,
+              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)",
+            }} />
+
+            {/* Standard */}
+            <div style={{ paddingBottom: 28 }}>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: 12,
+                color: "#2a6fdb",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                marginBottom: 10,
+              }}>
+                Standard
+              </div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1,
+                color: "#fff",
+                marginBottom: 8,
+              }}>
+                ₹20,000
+              </div>
+              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.48)", lineHeight: 1.5 }}>
+                20 hours · 1:1 mentorship · IRIS pathway
+              </div>
+            </div>
+
+            <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 28 }} />
+
+            {/* Advanced */}
+            <div style={{ paddingBottom: 28 }}>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: 12,
+                color: "#f5a623",
+                letterSpacing: "0.16em",
+                textTransform: "uppercase",
+                marginBottom: 10,
+              }}>
+                Advanced
+              </div>
+              <div style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 800,
+                fontSize: "clamp(2rem, 3.5vw, 2.8rem)",
+                letterSpacing: "-0.03em",
+                lineHeight: 1,
+                color: "#fff",
+                marginBottom: 8,
+              }}>
+                ₹30,000
+              </div>
+              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.48)", lineHeight: 1.5 }}>
+                35 hours · IRIS Finals and ISEF preparation
+              </div>
+            </div>
+
+            <div style={{ height: 1, background: "rgba(255,255,255,0.08)", marginBottom: 24 }} />
+
+            {/* Scholarship note */}
+            <div style={{
+              background: "rgba(245,166,35,0.08)",
+              border: "1px solid rgba(245,166,35,0.18)",
+              borderRadius: 8,
+              padding: "14px 16px",
+              fontSize: 14,
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.65,
+              marginBottom: 24,
+            }}>
+              Full scholarships available for students from underprivileged backgrounds. No documentation required upfront.
+            </div>
+
+            <a
+              href="#register"
+              style={{
+                alignSelf: "flex-start",
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: 13,
+                color: "#fff",
+                textDecoration: "none",
+                borderBottom: "2px solid #f5a623",
+                paddingBottom: 2,
+                letterSpacing: "0.04em",
+                transition: "color 0.2s",
+              }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f5a623"; }}
+              onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff"; }}
+            >
+              Apply for a programme →
+            </a>
+          </div>
         </div>
       </div>
 
