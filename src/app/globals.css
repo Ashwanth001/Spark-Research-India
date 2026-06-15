@@ -1,9 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-deep: #051d4d;
-  --color-navy: #0a2358;
-  --color-navy-2: #0e2d6e;
+  --color-navy-deep: #040f28;
+  --color-navy: #071535;
+  --color-navy-2: #0b1e47;
   --color-royal: #1656c7;
   --color-royal-bright: #2a6fdb;
   --color-gold: #f5a623;
@@ -14,6 +14,19 @@
   --color-ink-soft: #34406b;
   --color-muted: #6b7896;
 
+  /* Glass system tokens */
+  --glass-bg: rgba(255, 255, 255, 0.045);
+  --glass-bg-hover: rgba(255, 255, 255, 0.075);
+  --glass-border: rgba(255, 255, 255, 0.10);
+  --glass-border-strong: rgba(255, 255, 255, 0.18);
+  --glass-blur: blur(18px);
+  --glass-blur-heavy: blur(28px);
+  --glass-gold-bg: rgba(245, 166, 35, 0.08);
+  --glass-gold-border: rgba(245, 166, 35, 0.22);
+  --glass-royal-bg: rgba(22, 86, 199, 0.10);
+  --glass-royal-border: rgba(22, 86, 199, 0.25);
+
+  /* ✅ FIX: Inherit optimized Next.js fonts instead of overwriting them */
   --font-display: var(--font-display);
   --font-body: var(--font-body);
   --font-serif: var(--font-serif);
@@ -29,6 +42,40 @@ body {
   background: #fff;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+
+/* ─── Glass utility classes ─── */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-border);
+}
+.glass-heavy {
+  background: rgba(255, 255, 255, 0.055);
+  backdrop-filter: var(--glass-blur-heavy);
+  -webkit-backdrop-filter: var(--glass-blur-heavy);
+  border: 1px solid var(--glass-border-strong);
+}
+.glass-gold {
+  background: var(--glass-gold-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-gold-border);
+}
+.glass-royal {
+  background: var(--glass-royal-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-royal-border);
+}
+/* Light surface glass (for white-bg sections) */
+.glass-light {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(22, 86, 199, 0.12);
+  box-shadow: 0 2px 24px rgba(10, 35, 88, 0.07);
 }
 
 /* ─── Reveal: single element ─── */
@@ -97,24 +144,24 @@ body {
   60%  { opacity: 0.12; }
   100% { transform: scale(1.1); opacity: 0; }
 }
-
 @keyframes cursor-blink {
   0%, 100% { opacity: 1; }
   50% { opacity: 0; }
 }
-
 @keyframes draw-path {
   to { stroke-dashoffset: 0; }
 }
-
 @keyframes glow-pulse {
   0%, 100% { opacity: 0.6; }
   50% { opacity: 1; }
 }
-
 @keyframes float-up {
   0%   { opacity: 0; transform: translateY(16px); }
   100% { opacity: 1; transform: none; }
+}
+@keyframes glass-shimmer {
+  0%   { transform: translateX(-100%) skewX(-20deg); }
+  100% { transform: translateX(300%) skewX(-20deg); }
 }
 
 /* ─── CTA press spring ─── */
@@ -123,4 +170,23 @@ body {
 }
 .cta-spring:active {
   transform: scale(0.95) translateY(1px);
+}
+
+/* ─── Glass card hover glow ─── */
+.glass-card-glow {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s;
+}
+.glass-card-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+.glass-card-glow:hover {
+  transform: translateY(-4px);
 }
