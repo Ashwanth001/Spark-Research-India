@@ -26,9 +26,15 @@ export default function Nav() {
         left: 0,
         right: 0,
         zIndex: 50,
-        transition: "background 0.3s ease, box-shadow 0.3s ease",
-        background: scrolled ? "#051d4d" : "transparent",
-        boxShadow: scrolled ? "0 1px 0 rgba(255,255,255,0.08)" : "none",
+        transition: "background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease",
+        background: scrolled
+          ? "rgba(4, 15, 40, 0.72)"
+          : "transparent",
+        backdropFilter: scrolled ? "blur(22px)" : "none",
+        WebkitBackdropFilter: scrolled ? "blur(22px)" : "none",
+        boxShadow: scrolled
+          ? "0 1px 0 rgba(255,255,255,0.08), 0 4px 32px rgba(0,0,0,0.3)"
+          : "none",
       }}
     >
       <div
@@ -60,12 +66,12 @@ export default function Nav() {
                 fontWeight: 500,
                 fontSize: 14,
                 letterSpacing: "0.04em",
-                color: "rgba(255,255,255,0.75)",
+                color: "rgba(255,255,255,0.72)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#fff")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.75)")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.72)")}
             >
               {l.label}
             </a>
@@ -75,7 +81,7 @@ export default function Nav() {
             style={{
               fontFamily: "var(--font-display)",
               fontWeight: 700,
-              fontSize: 14,
+              fontSize: 13,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
               color: "#051d4d",
@@ -83,11 +89,21 @@ export default function Nav() {
               padding: "10px 22px",
               borderRadius: 6,
               textDecoration: "none",
-              transition: "background 0.2s, transform 0.15s",
+              transition: "background 0.2s, transform 0.15s, box-shadow 0.2s",
               display: "inline-block",
             }}
-            onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.background = "#f7b733"; (e.currentTarget as HTMLElement).style.transform = "translateY(-1px)"; }}
-            onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.background = "#f5a623"; (e.currentTarget as HTMLElement).style.transform = "none"; }}
+            onMouseEnter={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.background = "#f7b733";
+              el.style.transform = "translateY(-1px)";
+              el.style.boxShadow = "0 4px 16px rgba(245,166,35,0.4)";
+            }}
+            onMouseLeave={(e) => {
+              const el = e.currentTarget as HTMLElement;
+              el.style.background = "#f5a623";
+              el.style.transform = "none";
+              el.style.boxShadow = "none";
+            }}
           >
             Apply Now
           </a>
@@ -108,7 +124,13 @@ export default function Nav() {
 
       {/* Mobile menu */}
       {menuOpen && (
-        <div style={{ background: "#051d4d", padding: "16px 24px 24px", borderTop: "1px solid rgba(255,255,255,0.1)" }}>
+        <div style={{
+          background: "rgba(4, 15, 40, 0.92)",
+          backdropFilter: "blur(24px)",
+          WebkitBackdropFilter: "blur(24px)",
+          padding: "16px 24px 24px",
+          borderTop: "1px solid rgba(255,255,255,0.08)",
+        }}>
           {links.map((l) => (
             <a
               key={l.href}
