@@ -5,7 +5,7 @@ import { TiltCard } from "@/components/TiltCard";
 const programmes = [
   {
     tier: "Standard",
-    price: "₹20,000",
+    price: "₹25,000",
     hours: "20 Hours",
     note: "Hours roll over",
     features: [
@@ -23,7 +23,7 @@ const programmes = [
   },
   {
     tier: "Advanced",
-    price: "₹30,000",
+    price: "₹35,000",
     hours: "35 Hours",
     note: "Hours roll over",
     features: [
