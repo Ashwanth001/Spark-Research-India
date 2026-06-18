@@ -30,7 +30,7 @@ const differentiators = [
     num: "5",
     title: "A fraction of what comparable programmes cost",
     detail:
-      "Pioneer Academics charges $7,000+. Polygence charges $2,700+. SRI is ₹20,000 to ₹30,000 — with deeper IRIS expertise built in, and full scholarships for those who need them.",
+      "Pioneer Academics charges $7,000+. Polygence charges $2,700+. SRI is ₹25,000 to ₹35,000 — with deeper IRIS expertise built in, and full scholarships for those who need them.",
   },
   {
     num: "6",
@@ -68,7 +68,7 @@ export default function WhySRI() {
   }, []);
 
   return (
-    <section style={{ background: "#f8faff", padding: "100px 24px" }} id="why-sri">
+    <section style={{ background: "#FBF9F6", padding: "100px 24px" }} id="why-sri">
       <div style={{ maxWidth: 1100, margin: "0 auto" }}>
         <div style={{ marginBottom: 64, maxWidth: 560 }}>
           <h2
@@ -78,7 +78,7 @@ export default function WhySRI() {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
-              color: "#0a1733",
+              color: "#1B2659",
               margin: "0 0 16px",
               textWrap: "balance",
             }}
@@ -89,13 +89,13 @@ export default function WhySRI() {
                 fontFamily: "var(--font-serif)",
                 fontStyle: "italic",
                 fontWeight: 500,
-                color: "#1656c7",
+                color: "#E8614A",
               }}
             >
               differently.
             </span>
           </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "#34406b", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 17, lineHeight: 1.7, color: "#3a4570", margin: 0 }}>
             Six things you won&rsquo;t find anywhere else.
           </p>
         </div>
@@ -110,8 +110,8 @@ export default function WhySRI() {
                 gridTemplateColumns: "72px 1fr",
                 gap: "0 40px",
                 padding: "36px 0",
-                borderTop: "1px solid #e0e8f5",
-                borderBottom: i === differentiators.length - 1 ? "1px solid #e0e8f5" : "none",
+                borderTop: "1px solid #e2ddd7",
+                borderBottom: i === differentiators.length - 1 ? "1px solid #e2ddd7" : "none",
                 alignItems: "start",
               }}
             >
@@ -120,7 +120,7 @@ export default function WhySRI() {
                   fontFamily: "var(--font-serif)",
                   fontWeight: 700,
                   fontSize: "clamp(3rem, 5vw, 4.5rem)",
-                  color: "rgba(22,86,199,0.1)",
+                  color: "rgba(27,38,89,0.09)",
                   lineHeight: 1,
                   letterSpacing: "-0.03em",
                   userSelect: "none",
@@ -135,7 +135,7 @@ export default function WhySRI() {
                     fontFamily: "var(--font-display)",
                     fontWeight: 700,
                     fontSize: "clamp(1.05rem, 1.6vw, 1.2rem)",
-                    color: "#0a1733",
+                    color: "#1B2659",
                     margin: "0 0 10px",
                     lineHeight: 1.3,
                   }}
@@ -144,9 +144,10 @@ export default function WhySRI() {
                 </h3>
                 <p
                   style={{
+                    fontFamily: "var(--font-body)",
                     fontSize: 16,
                     lineHeight: 1.75,
-                    color: "#34406b",
+                    color: "#3a4570",
                     margin: 0,
                     maxWidth: 680,
                   }}

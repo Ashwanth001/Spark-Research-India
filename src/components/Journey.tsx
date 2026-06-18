@@ -8,8 +8,8 @@ const phases = [
     std: "4–6 hrs",
     adv: "5–7 hrs",
     desc: "1:1 sessions to find a high-impact, feasible idea aligned to IRIS judging criteria.",
-    color: "#1656c7",
-    glow: "rgba(22,86,199,0.25)",
+    color: "#00897B",
+    glow: "rgba(0,137,123,0.28)",
   },
   {
     num: "02",
@@ -17,8 +17,8 @@ const phases = [
     std: "4–6 hrs",
     adv: "6–8 hrs",
     desc: "Define the question, hypothesis, methodology, and a rigorous experimental plan.",
-    color: "#1656c7",
-    glow: "rgba(22,86,199,0.25)",
+    color: "#00897B",
+    glow: "rgba(0,137,123,0.28)",
   },
   {
     num: "03",
@@ -26,8 +26,8 @@ const phases = [
     std: "6–8 hrs",
     adv: "10–12 hrs",
     desc: "Regular check-ins to review data, unblock issues, and keep research quality high.",
-    color: "#16a39a",
-    glow: "rgba(22,163,154,0.25)",
+    color: "#6c63ff",
+    glow: "rgba(108,99,255,0.25)",
   },
   {
     num: "04",
@@ -35,8 +35,8 @@ const phases = [
     std: "5–6 hrs",
     adv: "5–6 hrs",
     desc: "Polish IRIS submission, abstract, and report. Coach the Finals poster and presentation.",
-    color: "#2f9d57",
-    glow: "rgba(47,157,87,0.25)",
+    color: "#E8614A",
+    glow: "rgba(232,97,74,0.25)",
   },
   {
     num: "05",
@@ -44,8 +44,8 @@ const phases = [
     std: "Optional",
     adv: "On selection",
     desc: "Simulated judging by verified ISEF alumni — final prep before the world stage.",
-    color: "#f5a623",
-    glow: "rgba(245,166,35,0.25)",
+    color: "#F5A623",
+    glow: "rgba(245,166,35,0.28)",
     optional: true,
   },
 ];
@@ -55,7 +55,6 @@ export default function Journey() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // Axis bar: direct style manipulation
     const axis = axisRef.current;
     if (axis) {
       const obs = new IntersectionObserver(
@@ -71,7 +70,6 @@ export default function Journey() {
       obs.observe(axis);
     }
 
-    // Grid: add .visible to trigger CSS stagger on children
     const grid = gridRef.current;
     if (grid) {
       const obs = new IntersectionObserver(
@@ -90,7 +88,7 @@ export default function Journey() {
   return (
     <section
       id="journey"
-      style={{ background: "#0a2358", padding: "100px 24px" }}
+      style={{ background: "#1B2659", padding: "100px 24px" }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ marginBottom: 56 }}>
@@ -107,17 +105,17 @@ export default function Journey() {
             }}
           >
             A ground-up roadmap,{" "}
-            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#f5a623" }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#F5A623" }}>
               idea to world stage.
             </span>
           </h2>
-          <p style={{ fontSize: 16, lineHeight: 1.7, color: "#9fb3d0", margin: 0, maxWidth: 560 }}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 16, lineHeight: 1.7, color: "rgba(255,255,255,0.62)", margin: 0, maxWidth: 560 }}>
             Hours are typical ranges — unused hours roll to the next phase at no
             extra cost.
           </p>
         </div>
 
-        {/* Axis bar with animated wipe */}
+        {/* Axis bar */}
         <div
           ref={axisRef}
           style={{
@@ -140,8 +138,8 @@ export default function Journey() {
               flexShrink: 0,
             }}
           >
-            <div style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", marginBottom: 4 }}>Start</div>
-            <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#2a6fdb" }}>A Spark of Curiosity</div>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 4 }}>Start</div>
+            <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#00897B" }}>A Spark of Curiosity</div>
           </div>
 
           {/* Animated connector */}
@@ -150,7 +148,7 @@ export default function Journey() {
               flex: 1,
               position: "relative",
               overflow: "hidden",
-              background: "linear-gradient(90deg, rgba(22,86,199,0.15) 0%, rgba(245,166,35,0.15) 100%)",
+              background: "linear-gradient(90deg, rgba(0,137,123,0.12) 0%, rgba(245,166,35,0.12) 100%)",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
@@ -164,13 +162,13 @@ export default function Journey() {
             >
               <line
                 x1="10" y1="12" x2="290" y2="12"
-                stroke="rgba(255,255,255,0.18)"
+                stroke="rgba(255,255,255,0.15)"
                 strokeWidth="1"
                 strokeDasharray="6 6"
               />
               <polyline
                 points="280,6 290,12 280,18"
-                stroke="rgba(255,255,255,0.35)"
+                stroke="rgba(255,255,255,0.32)"
                 strokeWidth="1.5"
                 fill="none"
               />
@@ -181,16 +179,16 @@ export default function Journey() {
             style={{
               padding: "16px 28px",
               borderLeft: "1px solid rgba(255,255,255,0.1)",
-              background: "#051d4d",
+              background: "rgba(20,28,68,0.6)",
               flexShrink: 0,
             }}
           >
-            <div style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.38)", marginBottom: 4 }}>Destination</div>
-            <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#f5a623" }}>ISEF, USA</div>
+            <div style={{ fontFamily: "var(--font-display)", fontSize: 11, letterSpacing: "0.2em", textTransform: "uppercase", color: "rgba(255,255,255,0.35)", marginBottom: 4 }}>Destination</div>
+            <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#F5A623" }}>ISEF, USA</div>
           </div>
         </div>
 
-        {/* Phase cards with stagger */}
+        {/* Phase cards */}
         <div
           ref={gridRef}
           className="stagger"
@@ -207,7 +205,7 @@ export default function Journey() {
               style={{
                 background: phase.optional
                   ? "rgba(245,166,35,0.05)"
-                  : "rgba(255,255,255,0.035)",
+                  : "rgba(255,255,255,0.04)",
                 border: phase.optional
                   ? "1px dashed rgba(245,166,35,0.35)"
                   : "1px solid rgba(255,255,255,0.08)",
@@ -220,31 +218,21 @@ export default function Journey() {
               }}
               onMouseEnter={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = phase.optional ? "rgba(245,166,35,0.1)" : "rgba(255,255,255,0.07)";
+                el.style.background = phase.optional ? "rgba(245,166,35,0.1)" : "rgba(255,255,255,0.08)";
                 el.style.transform = "translateY(-4px)";
                 el.style.boxShadow = `0 16px 40px ${phase.glow}`;
               }}
               onMouseLeave={(e) => {
                 const el = e.currentTarget as HTMLElement;
-                el.style.background = phase.optional ? "rgba(245,166,35,0.05)" : "rgba(255,255,255,0.035)";
+                el.style.background = phase.optional ? "rgba(245,166,35,0.05)" : "rgba(255,255,255,0.04)";
                 el.style.transform = "none";
                 el.style.boxShadow = "none";
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 8,
-                  marginBottom: 14,
-                }}
-              >
+              <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 14 }}>
                 <div style={{
-                  width: 8,
-                  height: 8,
-                  borderRadius: "50%",
-                  background: phase.color,
-                  flexShrink: 0,
+                  width: 8, height: 8, borderRadius: "50%",
+                  background: phase.color, flexShrink: 0,
                 }} />
                 <span style={{
                   fontFamily: "var(--font-display)",
@@ -257,29 +245,27 @@ export default function Journey() {
                 </span>
               </div>
 
-              <h3
-                style={{
-                  fontFamily: "var(--font-display)",
-                  fontWeight: 700,
-                  fontSize: 15,
-                  lineHeight: 1.25,
-                  color: "#fff",
-                  margin: "0 0 12px",
-                }}
-              >
+              <h3 style={{
+                fontFamily: "var(--font-display)",
+                fontWeight: 700,
+                fontSize: 15,
+                lineHeight: 1.25,
+                color: "#fff",
+                margin: "0 0 12px",
+              }}>
                 {phase.name}
               </h3>
 
               <div style={{ marginBottom: 12 }}>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 12, color: "#2a6fdb", marginBottom: 2 }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 12, color: "#00897B", marginBottom: 2 }}>
                   {phase.std} · Standard
                 </div>
-                <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 12, color: "#f5a623" }}>
+                <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 12, color: "#F5A623" }}>
                   {phase.adv} · Advanced
                 </div>
               </div>
 
-              <p style={{ fontSize: 13, lineHeight: 1.55, color: "#8da5c4", margin: 0, flex: 1 }}>
+              <p style={{ fontFamily: "var(--font-body)", fontSize: 13, lineHeight: 1.55, color: "rgba(255,255,255,0.58)", margin: 0, flex: 1 }}>
                 {phase.desc}
               </p>
 
@@ -290,7 +276,7 @@ export default function Journey() {
                   fontWeight: 600,
                   fontSize: 11,
                   letterSpacing: "0.1em",
-                  color: "#f5a623",
+                  color: "#F5A623",
                   textTransform: "uppercase",
                 }}>
                   Optional Add-On

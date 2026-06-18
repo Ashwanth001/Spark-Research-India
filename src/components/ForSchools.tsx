@@ -7,8 +7,8 @@ const actions = [
       "Bring Spark Research India into your school as a structured after-school or weekend programme. We handle all mentorship and coordination — you provide the students.",
     cta: "Discuss partnership",
     href: "mailto:ashwanth.sivakumar@gmail.com?subject=School%20Partnership%20Enquiry",
-    accent: "#f5a623",
-    textColor: "#051d4d",
+    accent: "#F5A623",
+    textColor: "#1B2659",
   },
   {
     title: "Nominate a student",
@@ -16,7 +16,7 @@ const actions = [
       "Know a student with exceptional potential? Teachers and counsellors can nominate students directly — nominated applications receive priority review.",
     cta: "Submit a nomination",
     href: "mailto:ashwanth.sivakumar@gmail.com?subject=Student%20Nomination",
-    accent: "#1656c7",
+    accent: "#00897B",
     textColor: "#fff",
   },
   {
@@ -25,9 +25,9 @@ const actions = [
       "Invite our team to run a free introductory workshop on scientific research and the IRIS pathway for your Class 8–12 students. No commitment required.",
     cta: "Request a workshop",
     href: "mailto:ashwanth.sivakumar@gmail.com?subject=Workshop%20Request",
-    accent: "rgba(255,255,255,0.12)",
+    accent: "rgba(255,255,255,0.07)",
     textColor: "#fff",
-    border: "1px solid rgba(255,255,255,0.2)",
+    border: "1px solid rgba(255,255,255,0.18)",
   },
 ];
 
@@ -35,7 +35,7 @@ export default function ForSchools() {
   return (
     <section
       id="schools"
-      style={{ background: "#0a2358", padding: "80px 24px" }}
+      style={{ background: "#141c44", padding: "80px 24px" }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
@@ -49,19 +49,6 @@ export default function ForSchools() {
           }}
         >
           <div>
-            <div
-              style={{
-                fontFamily: "var(--font-display)",
-                fontWeight: 700,
-                fontSize: 12,
-                letterSpacing: "0.22em",
-                textTransform: "uppercase",
-                color: "#f5a623",
-                marginBottom: 12,
-              }}
-            >
-              For Schools &amp; Teachers
-            </div>
             <h2
               style={{
                 fontFamily: "var(--font-display)",
@@ -79,9 +66,10 @@ export default function ForSchools() {
           </div>
           <p
             style={{
+              fontFamily: "var(--font-body)",
               fontSize: 16,
               lineHeight: 1.6,
-              color: "#9fb3d0",
+              color: "rgba(255,255,255,0.58)",
               maxWidth: 380,
               margin: 0,
             }}
@@ -125,12 +113,13 @@ export default function ForSchools() {
               </h3>
               <p
                 style={{
+                  fontFamily: "var(--font-body)",
                   fontSize: 15,
                   lineHeight: 1.65,
                   color:
                     action.textColor === "#fff"
-                      ? "rgba(255,255,255,0.75)"
-                      : "rgba(5,29,77,0.75)",
+                      ? "rgba(255,255,255,0.72)"
+                      : "rgba(27,38,89,0.75)",
                   margin: "0 0 24px",
                   flex: 1,
                 }}
@@ -149,15 +138,15 @@ export default function ForSchools() {
                   color:
                     action.textColor === "#fff"
                       ? "#fff"
-                      : "#051d4d",
+                      : "#1B2659",
                   background:
                     action.textColor === "#fff"
                       ? "rgba(255,255,255,0.12)"
-                      : "rgba(5,29,77,0.1)",
+                      : "rgba(27,38,89,0.1)",
                   border:
                     action.textColor === "#fff"
                       ? "1px solid rgba(255,255,255,0.25)"
-                      : "1px solid rgba(5,29,77,0.2)",
+                      : "1px solid rgba(27,38,89,0.2)",
                   padding: "10px 20px",
                   borderRadius: 6,
                   textDecoration: "none",

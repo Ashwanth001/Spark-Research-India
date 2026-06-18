@@ -16,10 +16,10 @@ const programmes = [
       "Remaining hours redirected to IRIS Finals prep",
     ],
     bestFor: "First-time IRIS participants and budget-conscious families starting their research journey.",
-    accentColor: "#1656c7",
-    bg: "#fff",
-    border: "1px solid #d6e3f8",
-    priceColor: "#1656c7",
+    accentColor: "#00897B",
+    bg: "#FBF9F6",
+    border: "1.5px solid #c8e6e3",
+    priceColor: "#1B2659",
   },
   {
     tier: "Advanced",
@@ -34,10 +34,10 @@ const programmes = [
       "Extended ISEF-specific submission support",
     ],
     bestFor: "Students targeting IRIS Finals and a serious shot at ISEF — with more time, depth, and rehearsal.",
-    accentColor: "#f5a623",
-    bg: "#f3f7fd",
-    border: "1px solid #d6e3f8",
-    priceColor: "#0a2358",
+    accentColor: "#F5A623",
+    bg: "#fef8ed",
+    border: "1.5px solid #f5d99a",
+    priceColor: "#1B2659",
   },
 ];
 
@@ -45,7 +45,7 @@ export default function Programmes() {
   const ref = useReveal();
 
   return (
-    <section id="programme" style={{ background: "#f8faff", padding: "100px 24px" }}>
+    <section id="programme" style={{ background: "#FBF9F6", padding: "100px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ marginBottom: 56, maxWidth: 640 }}>
           <h2
@@ -55,17 +55,17 @@ export default function Programmes() {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
-              color: "#0a1733",
+              color: "#1B2659",
               margin: "0 0 16px",
               textWrap: "balance",
             }}
           >
             Choose the programme that{" "}
-            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#1656c7" }}>
+            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#00897B" }}>
               fits the ambition.
             </span>
           </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "#34406b", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 17, lineHeight: 1.7, color: "#3a4570", margin: 0 }}>
             Both programmes follow the same proven 5-phase journey. The difference is depth,
             hours, and how far you want to go.
           </p>
@@ -88,6 +88,7 @@ export default function Programmes() {
                 padding: "40px 40px 36px",
                 display: "flex",
                 flexDirection: "column",
+                boxShadow: "0 2px 16px rgba(27,38,89,0.06)",
               }}
             >
               <div
@@ -95,7 +96,7 @@ export default function Programmes() {
                   fontFamily: "var(--font-display)",
                   fontWeight: 800,
                   fontSize: 22,
-                  color: p.priceColor,
+                  color: p.accentColor,
                   marginBottom: 16,
                   letterSpacing: "-0.01em",
                 }}
@@ -122,23 +123,25 @@ export default function Programmes() {
                   fontFamily: "var(--font-display)",
                   fontWeight: 600,
                   fontSize: 14,
-                  color: p.accentColor === "#f5a623" ? "#8a6010" : "#1656c7",
+                  color: p.accentColor,
                   marginBottom: 28,
+                  opacity: 0.9,
                 }}
               >
                 {p.hours} · {p.note}
               </div>
 
-              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", borderTop: "1px solid rgba(10,23,51,0.09)" }}>
+              <ul style={{ listStyle: "none", padding: 0, margin: "0 0 28px", borderTop: "1px solid rgba(27,38,89,0.09)" }}>
                 {p.features.map((f) => (
                   <li
                     key={f}
                     style={{
                       padding: "12px 0",
-                      borderBottom: "1px solid rgba(10,23,51,0.07)",
+                      borderBottom: "1px solid rgba(27,38,89,0.07)",
+                      fontFamily: "var(--font-body)",
                       fontSize: 15,
                       lineHeight: 1.5,
-                      color: "#34406b",
+                      color: "#3a4570",
                       display: "flex",
                       gap: 12,
                       alignItems: "flex-start",
@@ -153,12 +156,12 @@ export default function Programmes() {
               <div
                 style={{
                   marginTop: "auto",
-                  borderTop: "1px solid rgba(10,23,51,0.08)",
+                  borderTop: "1px solid rgba(27,38,89,0.08)",
                   paddingTop: 16,
                   marginBottom: 20,
                 }}
               >
-                <p style={{ fontSize: 14, lineHeight: 1.6, color: "#34406b", margin: 0 }}>{p.bestFor}</p>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: 14, lineHeight: 1.6, color: "#3a4570", margin: 0 }}>{p.bestFor}</p>
               </div>
 
               <a
@@ -171,7 +174,7 @@ export default function Programmes() {
                   fontSize: 13,
                   letterSpacing: "0.06em",
                   textTransform: "uppercase",
-                  color: p.accentColor === "#f5a623" ? "#051d4d" : "#fff",
+                  color: p.accentColor === "#F5A623" ? "#1B2659" : "#fff",
                   background: p.accentColor,
                   padding: "13px",
                   borderRadius: 6,
@@ -191,7 +194,7 @@ export default function Programmes() {
         <div
           style={{
             marginTop: 24,
-            background: "#0a2358",
+            background: "#1B2659",
             borderRadius: 10,
             padding: "22px 32px",
             display: "flex",
@@ -205,7 +208,7 @@ export default function Programmes() {
             <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#fff" }}>
               Can&rsquo;t afford the fee?
             </span>{" "}
-            <span style={{ fontSize: 15, color: "#c7d2e8" }}>
+            <span style={{ fontFamily: "var(--font-body)", fontSize: 15, color: "rgba(255,255,255,0.72)" }}>
               Full scholarships are available for students from underprivileged backgrounds.
             </span>
           </div>
@@ -217,8 +220,8 @@ export default function Programmes() {
               fontSize: 12,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "#051d4d",
-              background: "#f5a623",
+              color: "#1B2659",
+              background: "#F5A623",
               padding: "10px 22px",
               borderRadius: 6,
               textDecoration: "none",

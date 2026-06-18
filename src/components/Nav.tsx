@@ -28,12 +28,12 @@ export default function Nav() {
         zIndex: 50,
         transition: "background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease",
         background: scrolled
-          ? "rgba(4, 15, 40, 0.72)"
+          ? "rgba(20, 28, 68, 0.82)"
           : "transparent",
         backdropFilter: scrolled ? "blur(22px)" : "none",
         WebkitBackdropFilter: scrolled ? "blur(22px)" : "none",
         boxShadow: scrolled
-          ? "0 1px 0 rgba(255,255,255,0.08), 0 4px 32px rgba(0,0,0,0.3)"
+          ? "0 1px 0 rgba(255,255,255,0.07), 0 4px 32px rgba(0,0,0,0.25)"
           : "none",
       }}
     >
@@ -51,7 +51,7 @@ export default function Nav() {
         {/* Logo */}
         <a href="#" style={{ textDecoration: "none" }}>
           <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 16, letterSpacing: "0.06em", textTransform: "uppercase", color: "#fff" }}>
-            Spark Research<span style={{ color: "#f5a623" }}> India</span>
+            Spark Research<span style={{ color: "#F5A623" }}> India</span>
           </span>
         </a>
 
@@ -65,13 +65,13 @@ export default function Nav() {
                 fontFamily: "var(--font-display)",
                 fontWeight: 500,
                 fontSize: 14,
-                letterSpacing: "0.04em",
-                color: "rgba(255,255,255,0.72)",
+                letterSpacing: "0.03em",
+                color: "rgba(255,255,255,0.68)",
                 textDecoration: "none",
                 transition: "color 0.2s",
               }}
               onMouseEnter={(e) => ((e.target as HTMLElement).style.color = "#fff")}
-              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.72)")}
+              onMouseLeave={(e) => ((e.target as HTMLElement).style.color = "rgba(255,255,255,0.68)")}
             >
               {l.label}
             </a>
@@ -84,8 +84,8 @@ export default function Nav() {
               fontSize: 13,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "#051d4d",
-              background: "#f5a623",
+              color: "#1B2659",
+              background: "#F5A623",
               padding: "10px 22px",
               borderRadius: 6,
               textDecoration: "none",
@@ -100,7 +100,7 @@ export default function Nav() {
             }}
             onMouseLeave={(e) => {
               const el = e.currentTarget as HTMLElement;
-              el.style.background = "#f5a623";
+              el.style.background = "#F5A623";
               el.style.transform = "none";
               el.style.boxShadow = "none";
             }}
@@ -125,7 +125,7 @@ export default function Nav() {
       {/* Mobile menu */}
       {menuOpen && (
         <div style={{
-          background: "rgba(4, 15, 40, 0.92)",
+          background: "rgba(20, 28, 68, 0.95)",
           backdropFilter: "blur(24px)",
           WebkitBackdropFilter: "blur(24px)",
           padding: "16px 24px 24px",
@@ -162,8 +162,8 @@ export default function Nav() {
               fontSize: 14,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "#051d4d",
-              background: "#f5a623",
+              color: "#1B2659",
+              background: "#F5A623",
               padding: "12px",
               borderRadius: 6,
               textDecoration: "none",

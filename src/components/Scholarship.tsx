@@ -67,7 +67,7 @@ export default function Scholarship() {
   }, []);
 
   return (
-    <section id="scholarship" style={{ background: "#051d4d", padding: "100px 24px" }}>
+    <section id="scholarship" style={{ background: "#1B2659", padding: "100px 24px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
           style={{
@@ -87,7 +87,7 @@ export default function Scholarship() {
                 fontSize: "clamp(6rem, 14vw, 11rem)",
                 lineHeight: 0.85,
                 letterSpacing: "-0.04em",
-                color: "#f5a623",
+                color: "#F5A623",
                 marginBottom: 16,
                 fontVariantNumeric: "tabular-nums",
               }}
@@ -108,12 +108,12 @@ export default function Scholarship() {
               }}
             >
               Full scholarship.{" "}
-              <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#f5a623" }}>
+              <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#F5A623" }}>
                 Same programme.
               </span>
             </h2>
 
-            <p style={{ fontSize: 17, lineHeight: 1.7, color: "#c7d2e8", margin: "0 0 36px", maxWidth: 480 }}>
+            <p style={{ fontFamily: "var(--font-body)", fontSize: 17, lineHeight: 1.7, color: "rgba(255,255,255,0.7)", margin: "0 0 36px", maxWidth: 480 }}>
               Financial circumstance shouldn&rsquo;t stop any student from reaching the world stage.
               Scholarships cover the full programme fee. Same mentorship, same pathway, nothing held back.
             </p>
@@ -127,8 +127,8 @@ export default function Scholarship() {
                 fontSize: 14,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
-                color: "#051d4d",
-                background: "#f5a623",
+                color: "#1B2659",
+                background: "#F5A623",
                 padding: "14px 28px",
                 borderRadius: 6,
                 textDecoration: "none",
@@ -165,7 +165,7 @@ export default function Scholarship() {
               }}
             >
               <div style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "18px 26px" }}>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#f5a623" }}>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#F5A623" }}>
                   What&rsquo;s covered
                 </span>
               </div>
@@ -183,10 +183,10 @@ export default function Scholarship() {
                   onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.background = "rgba(255,255,255,0.04)")}
                   onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.background = "transparent")}
                 >
-                  <span style={{ color: "#f5a623", fontWeight: 700, flexShrink: 0, marginTop: 2 }}>✓</span>
+                  <span style={{ color: "#F5A623", fontWeight: 700, flexShrink: 0, marginTop: 2 }}>✓</span>
                   <div>
                     <div style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 14, color: "#fff", marginBottom: 2 }}>{item.label}</div>
-                    <div style={{ fontSize: 13, color: "#9fb3d0", lineHeight: 1.5 }}>{item.detail}</div>
+                    <div style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "rgba(255,255,255,0.55)", lineHeight: 1.5 }}>{item.detail}</div>
                   </div>
                 </div>
               ))}
@@ -202,7 +202,7 @@ export default function Scholarship() {
               }}
             >
               <div style={{ borderBottom: "1px solid rgba(255,255,255,0.08)", padding: "18px 26px" }}>
-                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#2a6fdb" }}>
+                <span style={{ fontFamily: "var(--font-display)", fontWeight: 700, fontSize: 15, color: "#00897B" }}>
                   Who can apply
                 </span>
               </div>
@@ -212,27 +212,29 @@ export default function Scholarship() {
                   style={{
                     padding: "13px 26px 13px 18px",
                     borderBottom: i < criteria.length - 1 ? "1px solid rgba(255,255,255,0.06)" : "none",
+                    fontFamily: "var(--font-body)",
                     fontSize: 14,
                     lineHeight: 1.55,
-                    color: "#c7d2e8",
+                    color: "rgba(255,255,255,0.72)",
                     display: "flex",
                     gap: 13,
                   }}
                 >
-                  <span style={{ color: "#2a6fdb", fontWeight: 700, flexShrink: 0 }}>✓</span>
+                  <span style={{ color: "#00897B", fontWeight: 700, flexShrink: 0 }}>✓</span>
                   {c}
                 </div>
               ))}
             </div>
 
             <div style={{
-              background: "rgba(42,111,219,0.1)",
-              border: "1px solid rgba(42,111,219,0.22)",
+              background: "rgba(0,137,123,0.1)",
+              border: "1px solid rgba(0,137,123,0.25)",
               borderRadius: 8,
               padding: "14px 20px",
+              fontFamily: "var(--font-body)",
               fontSize: 13,
               lineHeight: 1.6,
-              color: "#adc4e8",
+              color: "rgba(255,255,255,0.72)",
             }}>
               <strong style={{ color: "#fff" }}>How to apply:</strong> Select &ldquo;Apply for Scholarship&rdquo;
               in the registration form. The team will reach out within 3 business days to verify

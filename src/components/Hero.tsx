@@ -13,13 +13,13 @@ function Starfield({ canvasRef }: { canvasRef: React.RefObject<HTMLCanvasElement
         width: "100%",
         height: "100%",
         pointerEvents: "none",
-        opacity: 0.7,
+        opacity: 0.5,
       }}
     />
   );
 }
 
-/* ─── Radar pulse rings ─── */
+/* ─── Radar pulse rings (teal-tinted) ─── */
 function RadarRings() {
   return (
     <div
@@ -42,7 +42,7 @@ function RadarRings() {
             position: "absolute",
             inset: 0,
             borderRadius: "50%",
-            border: "1px solid rgba(245,166,35,0.18)",
+            border: "1px solid rgba(0,137,123,0.2)",
             animation: `radar-pulse 4.2s ${delay}s ease-out infinite`,
           }}
         />
@@ -53,7 +53,6 @@ function RadarRings() {
 
 /* ─── Typewriter hook ─── */
 function useTypewriter(text: string, startDelay = 900, charDelay = 44) {
-  // ✅ FIX: Start with 0 to prevent the SSR text "flash" jump-cut
   const [chars, setChars] = useState(0);
   const [active, setActive] = useState(false);
 
@@ -101,19 +100,18 @@ export default function Hero() {
     let stars: Star[] = [];
 
     function initStars() {
-      // ✅ FIX: Scale for Retina/High-DPR displays so stars aren't blurry
       const dpr = window.devicePixelRatio || 1;
       canvas!.width = canvas!.offsetWidth * dpr;
       canvas!.height = canvas!.offsetHeight * dpr;
       ctx!.scale(dpr, dpr);
 
-      stars = Array.from({ length: 110 }, () => ({
+      stars = Array.from({ length: 100 }, () => ({
         x: Math.random() * canvas!.offsetWidth,
         y: Math.random() * canvas!.offsetHeight,
-        vx: (Math.random() - 0.5) * 0.055,
+        vx: (Math.random() - 0.5) * 0.05,
         vy: (Math.random() - 0.5) * 0.04,
-        r: Math.random() * 1.4 + 0.25,
-        o: Math.random() * 0.55 + 0.18,
+        r: Math.random() * 1.2 + 0.2,
+        o: Math.random() * 0.45 + 0.12,
       }));
     }
 
@@ -141,8 +139,8 @@ export default function Hero() {
       for (const s of stars) {
         s.x = (s.x + s.vx + logicalWidth) % logicalWidth;
         s.y = (s.y + s.vy + logicalHeight) % logicalHeight;
-        const px = s.x + mx * 16;
-        const py = s.y + my * 10;
+        const px = s.x + mx * 14;
+        const py = s.y + my * 9;
         ctx.beginPath();
         ctx.arc(px, py, s.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(255,255,255,${s.o})`;
@@ -152,16 +150,14 @@ export default function Hero() {
       if (!document.hidden) raf = requestAnimationFrame(tick);
     }
 
-    // ✅ FIX: Cancel the old animation frame before requesting a new one
-    const onVis = () => { 
+    const onVis = () => {
       if (!document.hidden) {
-        cancelAnimationFrame(raf); 
-        raf = requestAnimationFrame(tick); 
+        cancelAnimationFrame(raf);
+        raf = requestAnimationFrame(tick);
       }
     };
-    
-    document.addEventListener("visibilitychange", onVis);
 
+    document.addEventListener("visibilitychange", onVis);
     raf = requestAnimationFrame(tick);
 
     return () => {
@@ -213,10 +209,10 @@ export default function Hero() {
       style={{
         position: "relative",
         background: `
-          radial-gradient(ellipse 70% 50% at 85% 20%, rgba(245,166,35,0.1), transparent 60%),
-          radial-gradient(ellipse 60% 50% at 10% 85%, rgba(42,111,219,0.2), transparent 60%),
-          radial-gradient(ellipse 40% 60% at 50% 0%, rgba(22,86,199,0.12), transparent 55%),
-          linear-gradient(180deg, #040f28 0%, #030c21 100%)
+          radial-gradient(ellipse 60% 55% at 90% 15%, rgba(0,137,123,0.14), transparent 60%),
+          radial-gradient(ellipse 55% 50% at 8% 90%, rgba(245,166,35,0.10), transparent 60%),
+          radial-gradient(ellipse 40% 55% at 50% 0%, rgba(27,38,89,0.5), transparent 55%),
+          linear-gradient(170deg, #141c44 0%, #1B2659 55%, #1e2d6b 100%)
         `,
         minHeight: "100vh",
         display: "flex",
@@ -225,22 +221,27 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Canvas */}
+      {/* Canvas starfield */}
       <Starfield canvasRef={canvasRef} />
 
       {/* Ambient glow orbs */}
-      <div aria-hidden style={{
-        position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden",
-      }}>
+      <div aria-hidden style={{ position: "absolute", inset: 0, pointerEvents: "none", zIndex: 0, overflow: "hidden" }}>
         <div style={{
-          position: "absolute", width: 600, height: 600, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(22,86,199,0.12) 0%, transparent 70%)",
-          top: "-10%", right: "-5%",
+          position: "absolute", width: 580, height: 580, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(0,137,123,0.12) 0%, transparent 70%)",
+          top: "-8%", right: "-4%",
+          animation: "teal-drift 14s ease-in-out infinite",
         }} />
         <div style={{
-          position: "absolute", width: 400, height: 400, borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(245,166,35,0.08) 0%, transparent 70%)",
-          bottom: "5%", left: "15%",
+          position: "absolute", width: 420, height: 420, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(245,166,35,0.09) 0%, transparent 70%)",
+          bottom: "8%", left: "12%",
+          animation: "gold-drift 18s ease-in-out infinite",
+        }} />
+        <div style={{
+          position: "absolute", width: 320, height: 320, borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(232,97,74,0.07) 0%, transparent 70%)",
+          top: "40%", left: "55%",
         }} />
       </div>
 
@@ -261,6 +262,26 @@ export default function Hero() {
       >
         {/* Left: copy */}
         <div>
+          {/* Peer-voice kicker */}
+          <div
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              background: "rgba(0,137,123,0.15)",
+              border: "1px solid rgba(0,137,123,0.3)",
+              borderRadius: 999,
+              padding: "6px 16px",
+              marginBottom: 28,
+              animation: "float-up 0.7s 0.1s cubic-bezier(0.16,1,0.3,1) both",
+            }}
+          >
+            <span style={{ width: 7, height: 7, borderRadius: "50%", background: "#00897B", flexShrink: 0, display: "inline-block" }} />
+            <span style={{ fontFamily: "var(--font-body)", fontWeight: 600, fontSize: 13, color: "#7ee8df", letterSpacing: "0.02em" }}>
+              Built by students. For students.
+            </span>
+          </div>
+
           <div
             className="parallax-mid"
             style={{
@@ -284,7 +305,7 @@ export default function Hero() {
                 zIndex: 1,
               }}
             >
-              Take your research idea
+              Your research starts here.
               <br />
               <span
                 suppressHydrationWarning
@@ -292,7 +313,7 @@ export default function Hero() {
                   fontFamily: "var(--font-serif)",
                   fontWeight: 500,
                   fontStyle: "italic",
-                  color: "#f5a623",
+                  color: "#F5A623",
                   display: "block",
                   minHeight: "1.1em",
                 }}
@@ -305,7 +326,7 @@ export default function Hero() {
                       display: "inline-block",
                       width: 2.5,
                       height: "0.82em",
-                      background: "#f5a623",
+                      background: "#F5A623",
                       verticalAlign: "middle",
                       marginLeft: 3,
                       borderRadius: 1,
@@ -322,19 +343,19 @@ export default function Hero() {
             className="parallax-mid"
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "clamp(1rem, 1.8vw, 1.2rem)",
-              lineHeight: 1.65,
-              color: "#b8c9e4",
+              fontSize: "clamp(1rem, 1.8vw, 1.15rem)",
+              lineHeight: 1.7,
+              color: "rgba(255,255,255,0.72)",
               margin: "0 0 44px",
               maxWidth: 500,
               textWrap: "pretty",
               animation: "float-up 0.9s 0.35s cubic-bezier(0.16,1,0.3,1) both",
             }}
           >
-            Structured mentorship for Indian students competing in the{" "}
+            Structured mentorship for Indian students competing at the{" "}
             <strong style={{ color: "#fff", fontWeight: 600 }}>IRIS National Fair</strong> — and on to{" "}
             <strong style={{ color: "#fff", fontWeight: 600 }}>ISEF</strong>, the world&rsquo;s largest
-            pre-college science competition.
+            pre-college science competition. ISEF is closer than you think.
           </p>
 
           {/* CTAs */}
@@ -356,8 +377,8 @@ export default function Hero() {
                 fontSize: 14,
                 letterSpacing: "0.06em",
                 textTransform: "uppercase",
-                color: "#051d4d",
-                background: "#f5a623",
+                color: "#1B2659",
+                background: "#F5A623",
                 padding: "15px 32px",
                 borderRadius: 6,
                 textDecoration: "none",
@@ -428,7 +449,7 @@ export default function Hero() {
               border: "1px solid rgba(255,255,255,0.12)",
               borderRadius: 16,
               padding: "36px 36px 32px",
-              boxShadow: "0 8px 48px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1)",
+              boxShadow: "0 8px 48px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.08)",
               position: "relative",
               overflow: "hidden",
             }}
@@ -438,7 +459,7 @@ export default function Hero() {
               position: "absolute",
               top: 0, left: 0, right: 0,
               height: 1,
-              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent)",
+              background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent)",
             }} />
 
             {/* Standard */}
@@ -447,7 +468,7 @@ export default function Hero() {
                 fontFamily: "var(--font-display)",
                 fontWeight: 700,
                 fontSize: 12,
-                color: "#2a6fdb",
+                color: "#00897B",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 marginBottom: 10,
@@ -463,9 +484,9 @@ export default function Hero() {
                 color: "#fff",
                 marginBottom: 8,
               }}>
-                ₹20,000
+                ₹25,000
               </div>
-              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.48)", lineHeight: 1.5 }}>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
                 20 hours · 1:1 mentorship · IRIS pathway
               </div>
             </div>
@@ -478,7 +499,7 @@ export default function Hero() {
                 fontFamily: "var(--font-display)",
                 fontWeight: 700,
                 fontSize: 12,
-                color: "#f5a623",
+                color: "#F5A623",
                 letterSpacing: "0.16em",
                 textTransform: "uppercase",
                 marginBottom: 10,
@@ -494,9 +515,9 @@ export default function Hero() {
                 color: "#fff",
                 marginBottom: 8,
               }}>
-                ₹30,000
+                ₹35,000
               </div>
-              <div style={{ fontSize: 14, color: "rgba(255,255,255,0.48)", lineHeight: 1.5 }}>
+              <div style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "rgba(255,255,255,0.5)", lineHeight: 1.5 }}>
                 35 hours · IRIS Finals and ISEF preparation
               </div>
             </div>
@@ -506,15 +527,16 @@ export default function Hero() {
             {/* Scholarship note */}
             <div style={{
               background: "rgba(245,166,35,0.08)",
-              border: "1px solid rgba(245,166,35,0.18)",
+              border: "1px solid rgba(245,166,35,0.2)",
               borderRadius: 8,
               padding: "14px 16px",
               fontSize: 14,
-              color: "rgba(255,255,255,0.65)",
+              fontFamily: "var(--font-body)",
+              color: "rgba(255,255,255,0.68)",
               lineHeight: 1.65,
               marginBottom: 24,
             }}>
-              Full scholarships available for students from underprivileged backgrounds. No documentation required upfront.
+              Full scholarships available — same programme, zero cost. No documentation needed upfront.
             </div>
 
             <a
@@ -526,12 +548,12 @@ export default function Hero() {
                 fontSize: 13,
                 color: "#fff",
                 textDecoration: "none",
-                borderBottom: "2px solid #f5a623",
+                borderBottom: "2px solid #F5A623",
                 paddingBottom: 2,
                 letterSpacing: "0.04em",
                 transition: "color 0.2s",
               }}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#f5a623"; }}
+              onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = "#F5A623"; }}
               onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = "#fff"; }}
             >
               Apply for a programme →

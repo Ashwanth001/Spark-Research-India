@@ -20,7 +20,7 @@ export default function Mentors() {
   return (
     <section
       id="mentors"
-      style={{ background: "#fff", padding: "100px 24px" }}
+      style={{ background: "#FBF9F6", padding: "100px 24px" }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ marginBottom: 56, maxWidth: 640 }}>
@@ -31,17 +31,17 @@ export default function Mentors() {
               fontSize: "clamp(2rem, 3.5vw, 3rem)",
               lineHeight: 1.1,
               letterSpacing: "-0.02em",
-              color: "#0a1733",
+              color: "#1B2659",
               margin: "0 0 16px",
               textWrap: "balance",
             }}
           >
             The{" "}
-            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#1656c7" }}>
-              experts behind the journey.
+            <span style={{ fontFamily: "var(--font-serif)", fontStyle: "italic", fontWeight: 500, color: "#E8614A" }}>
+              people in your corner.
             </span>
           </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.7, color: "#34406b", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 17, lineHeight: 1.7, color: "#3a4570", margin: 0 }}>
             A two-tier mentor structure ensures every student gets both
             programme-level guidance and deep subject-matter expertise.
           </p>
@@ -61,7 +61,7 @@ export default function Mentors() {
           {/* Senior Mentors */}
           <div
             style={{
-              background: "#0a2358",
+              background: "#1B2659",
               borderRadius: 12,
               overflow: "hidden",
               display: "flex",
@@ -74,7 +74,7 @@ export default function Mentors() {
                   fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 15,
-                  color: "#f5a623",
+                  color: "#F5A623",
                   marginBottom: 10,
                 }}
               >
@@ -91,7 +91,7 @@ export default function Mentors() {
               >
                 Core Team
               </div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: "#f5a623", marginBottom: 24 }}>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: "#F5A623", marginBottom: 24 }}>
                 Programme leads & coordinators
               </div>
             </div>
@@ -106,9 +106,10 @@ export default function Mentors() {
                 <li
                   key={item}
                   style={{
+                    fontFamily: "var(--font-body)",
                     fontSize: 15,
                     lineHeight: 1.5,
-                    color: "#c7d2e8",
+                    color: "rgba(255,255,255,0.78)",
                     padding: "11px 0 11px 26px",
                     position: "relative",
                     borderBottom: "1px solid rgba(255,255,255,0.07)",
@@ -119,7 +120,7 @@ export default function Mentors() {
                       position: "absolute",
                       left: 0,
                       top: 13,
-                      color: "#f5a623",
+                      color: "#F5A623",
                       fontWeight: 700,
                     }}
                   >
@@ -134,8 +135,8 @@ export default function Mentors() {
           {/* Subject Mentors */}
           <div
             style={{
-              background: "#f3f7fd",
-              border: "1px solid #dce8f8",
+              background: "#fff",
+              border: "1.5px solid #e2ddd7",
               borderRadius: 12,
               overflow: "hidden",
               display: "flex",
@@ -148,7 +149,7 @@ export default function Mentors() {
                   fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 15,
-                  color: "#1656c7",
+                  color: "#00897B",
                   marginBottom: 10,
                 }}
               >
@@ -159,13 +160,13 @@ export default function Mentors() {
                   fontFamily: "var(--font-display)",
                   fontWeight: 700,
                   fontSize: 24,
-                  color: "#0a1733",
+                  color: "#1B2659",
                   marginBottom: 4,
                 }}
               >
                 20+ Network
               </div>
-              <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: "#1656c7", marginBottom: 24 }}>
+              <div style={{ fontFamily: "var(--font-display)", fontWeight: 600, fontSize: 14, color: "#00897B", marginBottom: 24 }}>
                 Domain experts across 10+ STEM categories
               </div>
             </div>
@@ -180,12 +181,13 @@ export default function Mentors() {
                 <li
                   key={item}
                   style={{
+                    fontFamily: "var(--font-body)",
                     fontSize: 15,
                     lineHeight: 1.5,
-                    color: "#34406b",
+                    color: "#3a4570",
                     padding: "11px 0 11px 26px",
                     position: "relative",
-                    borderBottom: "1px solid rgba(10,23,51,0.08)",
+                    borderBottom: "1px solid rgba(27,38,89,0.08)",
                   }}
                 >
                   <span
@@ -193,7 +195,7 @@ export default function Mentors() {
                       position: "absolute",
                       left: 0,
                       top: 13,
-                      color: "#1656c7",
+                      color: "#00897B",
                       fontWeight: 700,
                     }}
                   >
@@ -209,8 +211,8 @@ export default function Mentors() {
         {/* Research areas */}
         <div
           style={{
-            background: "#f3f7fd",
-            border: "1px solid #dce8f8",
+            background: "#f3f1ee",
+            border: "1px solid #e2ddd7",
             borderRadius: 10,
             padding: "20px 28px",
             display: "flex",
@@ -226,7 +228,7 @@ export default function Mentors() {
               fontSize: 12,
               letterSpacing: "0.2em",
               textTransform: "uppercase",
-              color: "#1656c7",
+              color: "#1B2659",
               marginRight: 8,
             }}
           >
@@ -237,13 +239,13 @@ export default function Mentors() {
               key={area}
               style={{
                 background: "#fff",
-                border: "1px solid #d0dff0",
+                border: "1px solid #e2ddd7",
                 borderRadius: 999,
                 padding: "5px 14px",
-                fontFamily: "var(--font-display)",
+                fontFamily: "var(--font-body)",
                 fontWeight: 600,
                 fontSize: 13,
-                color: "#34406b",
+                color: "#3a4570",
               }}
             >
               {area}

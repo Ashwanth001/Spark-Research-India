@@ -7,7 +7,7 @@ export default function RegisterForm() {
   return (
     <section
       id="register"
-      style={{ background: "#0a2358", padding: "100px 24px" }}
+      style={{ background: "#1B2659", padding: "100px 24px" }}
     >
       <div
         style={{
@@ -40,7 +40,7 @@ export default function RegisterForm() {
                 fontFamily: "var(--font-serif)",
                 fontStyle: "italic",
                 fontWeight: 500,
-                color: "#f5a623",
+                color: "#F5A623",
               }}
             >
               the world stage?
@@ -49,9 +49,10 @@ export default function RegisterForm() {
 
           <p
             style={{
+              fontFamily: "var(--font-body)",
               fontSize: 17,
               lineHeight: 1.7,
-              color: "#c7d2e8",
+              color: "rgba(255,255,255,0.7)",
               margin: "0 0 36px",
             }}
           >
@@ -80,15 +81,15 @@ export default function RegisterForm() {
                   width: 40,
                   height: 40,
                   borderRadius: 8,
-                  background: "rgba(42,111,219,0.2)",
-                  border: "1px solid rgba(42,111,219,0.35)",
+                  background: "rgba(0,137,123,0.18)",
+                  border: "1px solid rgba(0,137,123,0.35)",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
                   fontFamily: "var(--font-display)",
                   fontWeight: 800,
                   fontSize: 13,
-                  color: "#f5a623",
+                  color: "#F5A623",
                   letterSpacing: "0.05em",
                 }}
               >
@@ -106,7 +107,7 @@ export default function RegisterForm() {
                 >
                   {step.title}
                 </div>
-                <div style={{ fontSize: 14, color: "#9fb3d0" }}>{step.sub}</div>
+                <div style={{ fontFamily: "var(--font-body)", fontSize: 14, color: "rgba(255,255,255,0.55)" }}>{step.sub}</div>
               </div>
             </div>
           ))}
@@ -115,8 +116,8 @@ export default function RegisterForm() {
         {/* Right: CTA */}
         <div
           style={{
-            background: "rgba(255,255,255,0.04)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            background: "rgba(255,255,255,0.05)",
+            border: "1px solid rgba(255,255,255,0.12)",
             borderRadius: 14,
             padding: "48px 40px",
             display: "flex",
@@ -132,7 +133,7 @@ export default function RegisterForm() {
               fontSize: 12,
               letterSpacing: "0.22em",
               textTransform: "uppercase",
-              color: "#f5a623",
+              color: "#F5A623",
               marginBottom: 20,
             }}
           >
@@ -156,9 +157,10 @@ export default function RegisterForm() {
 
           <p
             style={{
+              fontFamily: "var(--font-body)",
               fontSize: 15,
               lineHeight: 1.7,
-              color: "#9fb3d0",
+              color: "rgba(255,255,255,0.6)",
               margin: "0 0 36px",
               maxWidth: 320,
             }}
@@ -178,8 +180,8 @@ export default function RegisterForm() {
               fontSize: 15,
               letterSpacing: "0.06em",
               textTransform: "uppercase",
-              color: "#051d4d",
-              background: "#f5a623",
+              color: "#1B2659",
+              background: "#F5A623",
               padding: "16px 36px",
               borderRadius: 7,
               textDecoration: "none",
@@ -200,7 +202,7 @@ export default function RegisterForm() {
             Open Application Form →
           </a>
 
-          <p style={{ fontSize: 13, color: "#6b7896", margin: 0 }}>
+          <p style={{ fontFamily: "var(--font-body)", fontSize: 13, color: "rgba(255,255,255,0.4)", margin: 0 }}>
             Opens in a new tab &middot; No login required
           </p>
         </div>

@@ -1,35 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --color-navy-deep: #040f28;
-  --color-navy: #071535;
-  --color-navy-2: #0b1e47;
-  --color-royal: #1656c7;
-  --color-royal-bright: #2a6fdb;
-  --color-gold: #f5a623;
-  --color-gold-warm: #f7b733;
-  --color-panel: #e8f0fc;
-  --color-panel-2: #f3f7fd;
-  --color-ink: #0a1733;
-  --color-ink-soft: #34406b;
-  --color-muted: #6b7896;
+  /* ── Brand palette ── */
+  --color-indigo:       #1B2659;   /* Deep Indigo   — primary dark surface */
+  --color-indigo-deep:  #141c44;   /* darker shade for hero/footer */
+  --color-indigo-mid:   #222f6b;   /* mid-tone for cards on dark */
+  --color-gold:         #F5A623;   /* Electric Gold  — primary CTA / accent */
+  --color-gold-warm:    #f7b733;   /* hover state */
+  --color-teal:         #00897B;   /* Warm Teal      — secondary accent */
+  --color-teal-light:   #00a896;   /* teal hover */
+  --color-coral:        #E8614A;   /* Coral Blush    — energy / warning accent */
+  --color-ivory:        #FBF9F6;   /* Ivory          — light section bg */
+  --color-charcoal:     #2C2C3A;   /* Charcoal       — body text on light */
 
-  /* Glass system tokens */
-  --glass-bg: rgba(255, 255, 255, 0.045);
-  --glass-bg-hover: rgba(255, 255, 255, 0.075);
-  --glass-border: rgba(255, 255, 255, 0.10);
-  --glass-border-strong: rgba(255, 255, 255, 0.18);
-  --glass-blur: blur(18px);
-  --glass-blur-heavy: blur(28px);
-  --glass-gold-bg: rgba(245, 166, 35, 0.08);
-  --glass-gold-border: rgba(245, 166, 35, 0.22);
-  --glass-royal-bg: rgba(22, 86, 199, 0.10);
-  --glass-royal-border: rgba(22, 86, 199, 0.25);
+  /* ── Ink / text scale ── */
+  --color-ink:          #1B2659;   /* headings on light */
+  --color-ink-soft:     #3a4570;   /* body on light */
+  --color-muted:        #7280a8;   /* muted / meta text on light */
 
-  /* ✅ FIX: Inherit optimized Next.js fonts instead of overwriting them */
+  /* ── Light surface scale ── */
+  --color-surface:      #FBF9F6;   /* ivory page bg */
+  --color-surface-2:    #f3f1ee;   /* slightly darker ivory panel */
+  --color-border:       #e2ddd7;   /* subtle border on ivory */
+
+  /* ── Glass system (dark surfaces) ── */
+  --glass-bg:           rgba(255, 255, 255, 0.045);
+  --glass-bg-hover:     rgba(255, 255, 255, 0.075);
+  --glass-border:       rgba(255, 255, 255, 0.10);
+  --glass-border-strong:rgba(255, 255, 255, 0.18);
+  --glass-blur:         blur(18px);
+  --glass-blur-heavy:   blur(28px);
+  --glass-gold-bg:      rgba(245, 166, 35, 0.08);
+  --glass-gold-border:  rgba(245, 166, 35, 0.22);
+  --glass-teal-bg:      rgba(0, 137, 123, 0.10);
+  --glass-teal-border:  rgba(0, 137, 123, 0.28);
+
+  /* ── Fonts ── */
   --font-display: var(--font-display);
-  --font-body: var(--font-body);
-  --font-serif: var(--font-serif);
+  --font-body:    var(--font-body);
+  --font-serif:   var(--font-serif);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -38,8 +47,8 @@ html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-body);
-  color: var(--color-ink);
-  background: #fff;
+  color: var(--color-charcoal);
+  background: var(--color-ivory);
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -63,43 +72,51 @@ body {
   -webkit-backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-gold-border);
 }
-.glass-royal {
-  background: var(--glass-royal-bg);
+.glass-teal {
+  background: var(--glass-teal-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid var(--glass-royal-border);
+  border: 1px solid var(--glass-teal-border);
 }
-/* Light surface glass (for white-bg sections) */
+/* Light surface glass (ivory-bg sections) */
 .glass-light {
-  background: rgba(255, 255, 255, 0.72);
+  background: rgba(251, 249, 246, 0.80);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(22, 86, 199, 0.12);
-  box-shadow: 0 2px 24px rgba(10, 35, 88, 0.07);
+  border: 1px solid rgba(27, 38, 89, 0.10);
+  box-shadow: 0 2px 24px rgba(27, 38, 89, 0.07);
 }
 
 /* ─── Reveal: single element ─── */
 .reveal:not(.stagger) {
+  opacity: 1;
+  transform: none;
+}
+.reveal:not(.stagger).animate-on-scroll {
   opacity: 0;
   transform: translateY(32px);
   transition:
     opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.reveal:not(.stagger).visible {
+.reveal:not(.stagger).animate-on-scroll.visible {
   opacity: 1;
   transform: none;
 }
 
 /* ─── Stagger: children reveal individually ─── */
 .stagger > * {
+  opacity: 1;
+  transform: none;
+}
+.stagger.animate-on-scroll > * {
   opacity: 0;
   transform: translateY(28px);
   transition:
     opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.stagger.visible > * {
+.stagger.animate-on-scroll.visible > * {
   opacity: 1;
   transform: none;
 }
@@ -113,7 +130,9 @@ body {
 /* ─── Reduced motion: everything immediately visible ─── */
 @media (prefers-reduced-motion: reduce) {
   .reveal:not(.stagger),
-  .stagger > * {
+  .reveal:not(.stagger).animate-on-scroll,
+  .stagger > *,
+  .stagger.animate-on-scroll > * {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
@@ -121,7 +140,7 @@ body {
   }
 }
 
-/* ─── Hero parallax layers (CSS custom prop driven) ─── */
+/* ─── Hero parallax layers ─── */
 .parallax-deep {
   transition: transform 1.1s cubic-bezier(0.16, 1, 0.3, 1);
   transform: translate(calc(var(--px, 0) * 1px * 18), calc(var(--py, 0) * 1px * 12));
@@ -156,37 +175,34 @@ body {
   50% { opacity: 1; }
 }
 @keyframes float-up {
-  0%   { opacity: 0; transform: translateY(16px); }
+  0%   { opacity: 0; transform: translateY(20px); }
   100% { opacity: 1; transform: none; }
 }
 @keyframes glass-shimmer {
   0%   { transform: translateX(-100%) skewX(-20deg); }
   100% { transform: translateX(300%) skewX(-20deg); }
 }
+@keyframes teal-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(24px, -18px) scale(1.06); }
+}
+@keyframes gold-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50%       { transform: translate(-16px, 20px) scale(1.04); }
+}
 
 /* ─── CTA press spring ─── */
 .cta-spring {
-  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+  transition: transform 0.15s ease-out, box-shadow 0.2s ease-out;
 }
 .cta-spring:active {
-  transform: scale(0.95) translateY(1px);
+  transform: scale(0.96) translateY(1px);
 }
 
-/* ─── Glass card hover glow ─── */
-.glass-card-glow {
-  position: relative;
-  overflow: hidden;
+/* ─── Card hover lift ─── */
+.card-lift {
   transition: transform 0.28s cubic-bezier(0.16,1,0.3,1), box-shadow 0.28s;
 }
-.glass-card-glow::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, transparent 60%);
-  pointer-events: none;
-  z-index: 0;
-}
-.glass-card-glow:hover {
+.card-lift:hover {
   transform: translateY(-4px);
 }
